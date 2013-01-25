@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'PasteboardConnectionController' target in the 'PasteboardConnectionController' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

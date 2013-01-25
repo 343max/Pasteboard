@@ -21,7 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.connectionController = [[PBPasteboardConnectionController alloc] init];
+    self.connectionController = [[PBPasteboardConnectionController alloc] initWithName:[UIDevice currentDevice].name];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         PBDevicesViewController *devicesViewController = [[PBDevicesViewController alloc] initWithNibName:nil bundle:nil];

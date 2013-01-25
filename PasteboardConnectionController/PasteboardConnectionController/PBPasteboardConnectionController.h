@@ -11,6 +11,9 @@
 
 @interface PBPasteboardConnectionController : NSObject <CBPeripheralManagerDelegate, CBCentralManagerDelegate>
 
+- initWithName:(NSString *)name;
+
 @property (strong, readonly) CBUUID *pasteboardServiceUUID;
+@property (strong, readonly) NSString *name;
 
 @end

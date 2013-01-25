@@ -20,9 +20,15 @@
 
 - (id)init;
 {
+    return [self initWithName:@"Device"];
+}
+
+- (id)initWithName:(NSString *)name;
+{
     self = [super init];
     
     if (self) {
+        _name = name;
         _pasteboardServiceUUID = [CBUUID UUIDWithString:@"d6f23f70-66ff-11e2-bcfd-0800200c9a66"];
         
         _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
@@ -62,7 +68,7 @@
     NSLog(@"peripheralManager:didAddService: %@ error: %@", service, error);
     
     NSDictionary *dict = @{
-        CBAdvertisementDataLocalNameKey: [[UIDevice currentDevice] name],
+        CBAdvertisementDataLocalNameKey: self.name,
         CBAdvertisementDataServiceUUIDsKey: @[ self.pasteboardServiceUUID ]
     };
     
