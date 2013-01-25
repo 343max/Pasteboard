@@ -100,6 +100,9 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral;
 {
     NSLog(@"didConnectPeripheral: %@", peripheral.name);
+    
+    peripheral.delegate = self;
+    [peripheral discoverServices:@[ self.pasteboardServiceUUID ]];
 }
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error;
@@ -116,5 +119,29 @@
     NSLog(@"didDisconnectPeripheral: %@ error: %@", peripheral.name, error);
 }
 
+
+#pragma mark CBPeripheralDelegate
+
+- (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error;
+{
+    NSLog(@"peripheral: %@ didUpdateRSSI: %@", peripheral.name, peripheral.RSSI);
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error;
+{
+    NSLog(@"peripheralDidDiscoverServices: %@ error: %@", peripheral.name, error);
+    NSLog(@"services: %@", peripheral.services);
+    
+    for (CBService *service in peripheral.services) {
+        if ([service.UUID isEqual:self.pasteboardServiceUUID]) {
+            [peripheral discoverCharacteristics:nil forService:service];
+        }
+    }
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error;
+{
+    NSLog(@"peripheral: %@ didDiscoverCharecteristicsForService: %@ error: %@", peripheral.name, service, error);
+}
 
 @end

@@ -16,6 +16,7 @@
 		5066859116B2F54100ADCB05 /* PBPasteboardCentralAndPeripheralController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5066855516B2EDAA00ADCB05 /* PBPasteboardCentralAndPeripheralController.h */; };
 		5066859816B2F7A600ADCB05 /* PBPasteboardCentralAndPeripheralController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5066855616B2EDAA00ADCB05 /* PBPasteboardCentralAndPeripheralController.m */; };
 		5066859916B2F7EE00ADCB05 /* PBPasteboardCentralController.h in Headers */ = {isa = PBXBuildFile; fileRef = 506684E316B2E48500ADCB05 /* PBPasteboardCentralController.h */; };
+		506FC1A016B3072B005CEC8B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506FC19F16B3072B005CEC8B /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,8 +45,9 @@
 		5066853616B2EB3E00ADCB05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5066855516B2EDAA00ADCB05 /* PBPasteboardCentralAndPeripheralController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPasteboardCentralAndPeripheralController.h; sourceTree = "<group>"; };
 		5066855616B2EDAA00ADCB05 /* PBPasteboardCentralAndPeripheralController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPasteboardCentralAndPeripheralController.m; sourceTree = "<group>"; };
-		5066856316B2F0D700ADCB05 /* OSXPasteboardConnectionController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = OSXPasteboardConnectionController.framework; path = PasteboardConnectionControllerFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5066856316B2F0D700ADCB05 /* PasteboardConnectionControllerFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PasteboardConnectionControllerFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5066857716B2F28400ADCB05 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
+		506FC19F16B3072B005CEC8B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				506FC1A016B3072B005CEC8B /* CoreBluetooth.framework in Frameworks */,
 				506684D616B2E46E00ADCB05 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,7 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				506684D216B2E46E00ADCB05 /* libPasteboardConnectionControllerLibrary.a */,
-				5066856316B2F0D700ADCB05 /* OSXPasteboardConnectionController.framework */,
+				5066856316B2F0D700ADCB05 /* PasteboardConnectionControllerFramework.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -93,6 +96,7 @@
 				506684D516B2E46E00ADCB05 /* Foundation.framework */,
 				5066857716B2F28400ADCB05 /* IOBluetooth.framework */,
 				5066853116B2EB3E00ADCB05 /* Cocoa.framework */,
+				506FC19F16B3072B005CEC8B /* CoreBluetooth.framework */,
 				5066853316B2EB3E00ADCB05 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -174,7 +178,7 @@
 			);
 			name = PasteboardConnectionControllerFramework;
 			productName = OSXPasteboardConnectionController;
-			productReference = 5066856316B2F0D700ADCB05 /* OSXPasteboardConnectionController.framework */;
+			productReference = 5066856316B2F0D700ADCB05 /* PasteboardConnectionControllerFramework.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -332,6 +336,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -357,6 +362,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;

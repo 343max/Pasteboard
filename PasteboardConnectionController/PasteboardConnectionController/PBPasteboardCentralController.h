@@ -14,7 +14,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PBPasteboardCentralController : NSObject <CBCentralManagerDelegate>
+@interface PBPasteboardCentralController : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
 - initWithName:(NSString *)name;
 
