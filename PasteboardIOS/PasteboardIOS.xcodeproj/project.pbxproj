@@ -19,7 +19,7 @@
 		5066849F16B2CB4700ADCB05 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5066849E16B2CB4700ADCB05 /* Default-568h@2x.png */; };
 		506684B916B2CB8200ADCB05 /* PBDevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506684B816B2CB8200ADCB05 /* PBDevicesViewController.m */; };
 		506684BB16B2CBC100ADCB05 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506684BA16B2CBC100ADCB05 /* CoreBluetooth.framework */; };
-		5066850716B2E7AE00ADCB05 /* libPasteboardConnectionController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5066850616B2E7AE00ADCB05 /* libPasteboardConnectionController.a */; };
+		5066859D16B2F90200ADCB05 /* libPasteboardConnectionControllerLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5066859C16B2F90200ADCB05 /* libPasteboardConnectionControllerLibrary.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +40,7 @@
 		506684B716B2CB8200ADCB05 /* PBDevicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBDevicesViewController.h; sourceTree = "<group>"; };
 		506684B816B2CB8200ADCB05 /* PBDevicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBDevicesViewController.m; sourceTree = "<group>"; };
 		506684BA16B2CBC100ADCB05 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		5066850616B2E7AE00ADCB05 /* libPasteboardConnectionController.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPasteboardConnectionController.a; path = "../../../Library/Developer/Xcode/DerivedData/PasteboardIOS-afixmiuellrfyabjgkmcspastxoq/Build/Products/Debug-iphoneos/libPasteboardConnectionController.a"; sourceTree = "<group>"; };
+		5066859C16B2F90200ADCB05 /* libPasteboardConnectionControllerLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPasteboardConnectionControllerLibrary.a; path = "../../../Library/Developer/Xcode/DerivedData/PasteboardIOS-afixmiuellrfyabjgkmcspastxoq/Build/Products/Debug-iphoneos/libPasteboardConnectionControllerLibrary.a"; sourceTree = "<group>"; };
 		A920052463AA414C995AF375 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -53,8 +53,8 @@
 				5066848916B2CB4700ADCB05 /* UIKit.framework in Frameworks */,
 				5066848B16B2CB4700ADCB05 /* Foundation.framework in Frameworks */,
 				5066848D16B2CB4700ADCB05 /* CoreGraphics.framework in Frameworks */,
-				5066850716B2E7AE00ADCB05 /* libPasteboardConnectionController.a in Frameworks */,
 				4EACECC443EB4CFE8B0001C0 /* libPods.a in Frameworks */,
+				5066859D16B2F90200ADCB05 /* libPasteboardConnectionControllerLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +64,7 @@
 		5066847916B2CB4700ADCB05 = {
 			isa = PBXGroup;
 			children = (
+				5066859C16B2F90200ADCB05 /* libPasteboardConnectionControllerLibrary.a */,
 				5066848E16B2CB4700ADCB05 /* PasteboardIOS */,
 				5066848716B2CB4700ADCB05 /* Frameworks */,
 				5066848516B2CB4700ADCB05 /* Products */,
@@ -82,7 +83,6 @@
 		5066848716B2CB4700ADCB05 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5066850616B2E7AE00ADCB05 /* libPasteboardConnectionController.a */,
 				506684BA16B2CBC100ADCB05 /* CoreBluetooth.framework */,
 				5066848816B2CB4700ADCB05 /* UIKit.framework */,
 				5066848A16B2CB4700ADCB05 /* Foundation.framework */,

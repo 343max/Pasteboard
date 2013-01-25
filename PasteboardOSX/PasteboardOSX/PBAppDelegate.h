@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PBAppDelegate : NSObject <NSApplicationDelegate, CBCentralManagerDelegate>
+@interface PBAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 

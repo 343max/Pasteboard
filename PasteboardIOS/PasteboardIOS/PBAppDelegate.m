@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Max Winde. All rights reserved.
 //
 
-#import "PBPasteboardConnectionController.h"
+#import "PBPasteboardCentralAndPeripheralController.h"
 #import "PBDevicesViewController.h"
 #import "PBAppDelegate.h"
 
 @interface PBAppDelegate ()
 
-@property (strong) PBPasteboardConnectionController *connectionController;
+@property (strong) PBPasteboardCentralAndPeripheralController *connectionController;
 
 @end
 
@@ -21,7 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.connectionController = [[PBPasteboardConnectionController alloc] initWithName:[UIDevice currentDevice].name];
+    self.connectionController = [[PBPasteboardCentralAndPeripheralController alloc] initWithName:[UIDevice currentDevice].name];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         PBDevicesViewController *devicesViewController = [[PBDevicesViewController alloc] initWithNibName:nil bundle:nil];

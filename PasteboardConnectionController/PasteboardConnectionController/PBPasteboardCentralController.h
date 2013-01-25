@@ -6,10 +6,15 @@
 //  Copyright (c) 2013 Max Winde. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
 #import <CoreBluetooth/CoreBluetooth.h>
+#else
+#import <IOBluetooth/IOBluetooth.h>
+#endif
+
 #import <Foundation/Foundation.h>
 
-@interface PBPasteboardConnectionController : NSObject <CBPeripheralManagerDelegate, CBCentralManagerDelegate>
+@interface PBPasteboardCentralController : NSObject <CBCentralManagerDelegate>
 
 - initWithName:(NSString *)name;
 

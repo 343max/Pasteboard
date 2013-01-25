@@ -8,9 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		506684D616B2E46E00ADCB05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506684D516B2E46E00ADCB05 /* Foundation.framework */; };
-		5066850916B2E8BE00ADCB05 /* PBPasteboardConnectionController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 506684E316B2E48500ADCB05 /* PBPasteboardConnectionController.h */; };
-		5066850A16B2E8FE00ADCB05 /* PBPasteboardConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506684E416B2E48500ADCB05 /* PBPasteboardConnectionController.m */; };
-		5066850C16B2E9B500ADCB05 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5066850B16B2E9B400ADCB05 /* CoreBluetooth.framework */; };
+		5066850916B2E8BE00ADCB05 /* PBPasteboardCentralController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 506684E316B2E48500ADCB05 /* PBPasteboardCentralController.h */; };
+		5066850A16B2E8FE00ADCB05 /* PBPasteboardCentralController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506684E416B2E48500ADCB05 /* PBPasteboardCentralController.m */; };
+		5066856416B2F0D700ADCB05 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5066853116B2EB3E00ADCB05 /* Cocoa.framework */; };
+		5066857216B2F0E600ADCB05 /* PBPasteboardCentralController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506684E416B2E48500ADCB05 /* PBPasteboardCentralController.m */; };
+		5066857816B2F28400ADCB05 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5066857716B2F28400ADCB05 /* IOBluetooth.framework */; };
+		5066859116B2F54100ADCB05 /* PBPasteboardCentralAndPeripheralController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5066855516B2EDAA00ADCB05 /* PBPasteboardCentralAndPeripheralController.h */; };
+		5066859816B2F7A600ADCB05 /* PBPasteboardCentralAndPeripheralController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5066855616B2EDAA00ADCB05 /* PBPasteboardCentralAndPeripheralController.m */; };
+		5066859916B2F7EE00ADCB05 /* PBPasteboardCentralController.h in Headers */ = {isa = PBXBuildFile; fileRef = 506684E316B2E48500ADCB05 /* PBPasteboardCentralController.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -20,19 +25,27 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
-				5066850916B2E8BE00ADCB05 /* PBPasteboardConnectionController.h in CopyFiles */,
+				5066859116B2F54100ADCB05 /* PBPasteboardCentralAndPeripheralController.h in CopyFiles */,
+				5066850916B2E8BE00ADCB05 /* PBPasteboardCentralController.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		506684D216B2E46E00ADCB05 /* libPasteboardConnectionController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPasteboardConnectionController.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		506684D216B2E46E00ADCB05 /* libPasteboardConnectionControllerLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPasteboardConnectionControllerLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		506684D516B2E46E00ADCB05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		506684D916B2E46E00ADCB05 /* PasteboardConnectionController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PasteboardConnectionController-Prefix.pch"; sourceTree = "<group>"; };
-		506684E316B2E48500ADCB05 /* PBPasteboardConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPasteboardConnectionController.h; sourceTree = "<group>"; };
-		506684E416B2E48500ADCB05 /* PBPasteboardConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPasteboardConnectionController.m; sourceTree = "<group>"; };
-		5066850B16B2E9B400ADCB05 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		506684E316B2E48500ADCB05 /* PBPasteboardCentralController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPasteboardCentralController.h; sourceTree = "<group>"; };
+		506684E416B2E48500ADCB05 /* PBPasteboardCentralController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPasteboardCentralController.m; sourceTree = "<group>"; };
+		5066853116B2EB3E00ADCB05 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		5066853416B2EB3E00ADCB05 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		5066853516B2EB3E00ADCB05 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		5066853616B2EB3E00ADCB05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5066855516B2EDAA00ADCB05 /* PBPasteboardCentralAndPeripheralController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPasteboardCentralAndPeripheralController.h; sourceTree = "<group>"; };
+		5066855616B2EDAA00ADCB05 /* PBPasteboardCentralAndPeripheralController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPasteboardCentralAndPeripheralController.m; sourceTree = "<group>"; };
+		5066856316B2F0D700ADCB05 /* OSXPasteboardConnectionController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = OSXPasteboardConnectionController.framework; path = PasteboardConnectionControllerFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5066857716B2F28400ADCB05 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,8 +53,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5066850C16B2E9B500ADCB05 /* CoreBluetooth.framework in Frameworks */,
 				506684D616B2E46E00ADCB05 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5066855F16B2F0D700ADCB05 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5066857816B2F28400ADCB05 /* IOBluetooth.framework in Frameworks */,
+				5066856416B2F0D700ADCB05 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,7 +81,8 @@
 		506684D316B2E46E00ADCB05 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				506684D216B2E46E00ADCB05 /* libPasteboardConnectionController.a */,
+				506684D216B2E46E00ADCB05 /* libPasteboardConnectionControllerLibrary.a */,
+				5066856316B2F0D700ADCB05 /* OSXPasteboardConnectionController.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -68,8 +90,10 @@
 		506684D416B2E46E00ADCB05 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5066850B16B2E9B400ADCB05 /* CoreBluetooth.framework */,
 				506684D516B2E46E00ADCB05 /* Foundation.framework */,
+				5066857716B2F28400ADCB05 /* IOBluetooth.framework */,
+				5066853116B2EB3E00ADCB05 /* Cocoa.framework */,
+				5066853316B2EB3E00ADCB05 /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -77,8 +101,10 @@
 		506684D716B2E46E00ADCB05 /* PasteboardConnectionController */ = {
 			isa = PBXGroup;
 			children = (
-				506684E316B2E48500ADCB05 /* PBPasteboardConnectionController.h */,
-				506684E416B2E48500ADCB05 /* PBPasteboardConnectionController.m */,
+				506684E316B2E48500ADCB05 /* PBPasteboardCentralController.h */,
+				506684E416B2E48500ADCB05 /* PBPasteboardCentralController.m */,
+				5066855516B2EDAA00ADCB05 /* PBPasteboardCentralAndPeripheralController.h */,
+				5066855616B2EDAA00ADCB05 /* PBPasteboardCentralAndPeripheralController.m */,
 				506684D816B2E46E00ADCB05 /* Supporting Files */,
 			);
 			path = PasteboardConnectionController;
@@ -92,12 +118,33 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5066853316B2EB3E00ADCB05 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5066853416B2EB3E00ADCB05 /* AppKit.framework */,
+				5066853516B2EB3E00ADCB05 /* CoreData.framework */,
+				5066853616B2EB3E00ADCB05 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		5066856016B2F0D700ADCB05 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5066859916B2F7EE00ADCB05 /* PBPasteboardCentralController.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		506684D116B2E46E00ADCB05 /* PasteboardConnectionController */ = {
+		506684D116B2E46E00ADCB05 /* PasteboardConnectionControllerLibrary */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 506684E016B2E46E00ADCB05 /* Build configuration list for PBXNativeTarget "PasteboardConnectionController" */;
+			buildConfigurationList = 506684E016B2E46E00ADCB05 /* Build configuration list for PBXNativeTarget "PasteboardConnectionControllerLibrary" */;
 			buildPhases = (
 				506684CE16B2E46E00ADCB05 /* Sources */,
 				506684CF16B2E46E00ADCB05 /* Frameworks */,
@@ -107,10 +154,28 @@
 			);
 			dependencies = (
 			);
-			name = PasteboardConnectionController;
+			name = PasteboardConnectionControllerLibrary;
 			productName = PasteboardConnectionController;
-			productReference = 506684D216B2E46E00ADCB05 /* libPasteboardConnectionController.a */;
+			productReference = 506684D216B2E46E00ADCB05 /* libPasteboardConnectionControllerLibrary.a */;
 			productType = "com.apple.product-type.library.static";
+		};
+		5066856216B2F0D700ADCB05 /* PasteboardConnectionControllerFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5066856F16B2F0D800ADCB05 /* Build configuration list for PBXNativeTarget "PasteboardConnectionControllerFramework" */;
+			buildPhases = (
+				5066855E16B2F0D700ADCB05 /* Sources */,
+				5066855F16B2F0D700ADCB05 /* Frameworks */,
+				5066856016B2F0D700ADCB05 /* Headers */,
+				5066856116B2F0D700ADCB05 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PasteboardConnectionControllerFramework;
+			productName = OSXPasteboardConnectionController;
+			productReference = 5066856316B2F0D700ADCB05 /* OSXPasteboardConnectionController.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -133,17 +198,37 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				506684D116B2E46E00ADCB05 /* PasteboardConnectionController */,
+				506684D116B2E46E00ADCB05 /* PasteboardConnectionControllerLibrary */,
+				5066856216B2F0D700ADCB05 /* PasteboardConnectionControllerFramework */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5066856116B2F0D700ADCB05 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		506684CE16B2E46E00ADCB05 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5066850A16B2E8FE00ADCB05 /* PBPasteboardConnectionController.m in Sources */,
+				5066859816B2F7A600ADCB05 /* PBPasteboardCentralAndPeripheralController.m in Sources */,
+				5066850A16B2E8FE00ADCB05 /* PBPasteboardCentralController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5066855E16B2F0D700ADCB05 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5066857216B2F0E600ADCB05 /* PBPasteboardCentralController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +239,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -174,6 +260,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7s armv7";
 			};
 			name = Debug;
 		};
@@ -181,6 +268,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -194,6 +282,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7s armv7";
 			};
 			name = Release;
 		};
@@ -203,6 +292,7 @@
 				DSTROOT = /tmp/PasteboardConnectionController.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PasteboardConnectionController/PasteboardConnectionController-Prefix.pch";
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -215,9 +305,59 @@
 				DSTROOT = /tmp/PasteboardConnectionController.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PasteboardConnectionController/PasteboardConnectionController-Prefix.pch";
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		5066857016B2F0D800ADCB05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OSXPasteboardConnectionController/OSXPasteboardConnectionController-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "OSXPasteboardConnectionController/OSXPasteboardConnectionController-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		5066857116B2F0D800ADCB05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OSXPasteboardConnectionController/OSXPasteboardConnectionController-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "OSXPasteboardConnectionController/OSXPasteboardConnectionController-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
 		};
@@ -233,11 +373,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		506684E016B2E46E00ADCB05 /* Build configuration list for PBXNativeTarget "PasteboardConnectionController" */ = {
+		506684E016B2E46E00ADCB05 /* Build configuration list for PBXNativeTarget "PasteboardConnectionControllerLibrary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				506684E116B2E46E00ADCB05 /* Debug */,
 				506684E216B2E46E00ADCB05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5066856F16B2F0D800ADCB05 /* Build configuration list for PBXNativeTarget "PasteboardConnectionControllerFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5066857016B2F0D800ADCB05 /* Debug */,
+				5066857116B2F0D800ADCB05 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
