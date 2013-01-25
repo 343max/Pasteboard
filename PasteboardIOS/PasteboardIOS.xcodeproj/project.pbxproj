@@ -1,0 +1,300 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5066848916B2CB4700ADCB05 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5066848816B2CB4700ADCB05 /* UIKit.framework */; };
+		5066848B16B2CB4700ADCB05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5066848A16B2CB4700ADCB05 /* Foundation.framework */; };
+		5066848D16B2CB4700ADCB05 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5066848C16B2CB4700ADCB05 /* CoreGraphics.framework */; };
+		5066849316B2CB4700ADCB05 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5066849116B2CB4700ADCB05 /* InfoPlist.strings */; };
+		5066849516B2CB4700ADCB05 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5066849416B2CB4700ADCB05 /* main.m */; };
+		5066849916B2CB4700ADCB05 /* PBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5066849816B2CB4700ADCB05 /* PBAppDelegate.m */; };
+		5066849B16B2CB4700ADCB05 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5066849A16B2CB4700ADCB05 /* Default.png */; };
+		5066849D16B2CB4700ADCB05 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5066849C16B2CB4700ADCB05 /* Default@2x.png */; };
+		5066849F16B2CB4700ADCB05 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5066849E16B2CB4700ADCB05 /* Default-568h@2x.png */; };
+		506684B916B2CB8200ADCB05 /* PBDevicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506684B816B2CB8200ADCB05 /* PBDevicesViewController.m */; };
+		506684BB16B2CBC100ADCB05 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506684BA16B2CBC100ADCB05 /* CoreBluetooth.framework */; };
+		506684C616B2D51800ADCB05 /* PBPasteboardConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506684C516B2D51800ADCB05 /* PBPasteboardConnectionController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5066848416B2CB4700ADCB05 /* PasteboardIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasteboardIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5066848816B2CB4700ADCB05 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		5066848A16B2CB4700ADCB05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5066848C16B2CB4700ADCB05 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5066849016B2CB4700ADCB05 /* PasteboardIOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PasteboardIOS-Info.plist"; sourceTree = "<group>"; };
+		5066849216B2CB4700ADCB05 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5066849416B2CB4700ADCB05 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5066849616B2CB4700ADCB05 /* PasteboardIOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PasteboardIOS-Prefix.pch"; sourceTree = "<group>"; };
+		5066849716B2CB4700ADCB05 /* PBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAppDelegate.h; sourceTree = "<group>"; };
+		5066849816B2CB4700ADCB05 /* PBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAppDelegate.m; sourceTree = "<group>"; };
+		5066849A16B2CB4700ADCB05 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		5066849C16B2CB4700ADCB05 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		5066849E16B2CB4700ADCB05 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		506684B716B2CB8200ADCB05 /* PBDevicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBDevicesViewController.h; sourceTree = "<group>"; };
+		506684B816B2CB8200ADCB05 /* PBDevicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBDevicesViewController.m; sourceTree = "<group>"; };
+		506684BA16B2CBC100ADCB05 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		506684C416B2D51800ADCB05 /* PBPasteboardConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPasteboardConnectionController.h; sourceTree = "<group>"; };
+		506684C516B2D51800ADCB05 /* PBPasteboardConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPasteboardConnectionController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5066848116B2CB4700ADCB05 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				506684BB16B2CBC100ADCB05 /* CoreBluetooth.framework in Frameworks */,
+				5066848916B2CB4700ADCB05 /* UIKit.framework in Frameworks */,
+				5066848B16B2CB4700ADCB05 /* Foundation.framework in Frameworks */,
+				5066848D16B2CB4700ADCB05 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5066847916B2CB4700ADCB05 = {
+			isa = PBXGroup;
+			children = (
+				506684BA16B2CBC100ADCB05 /* CoreBluetooth.framework */,
+				5066848E16B2CB4700ADCB05 /* PasteboardIOS */,
+				5066848716B2CB4700ADCB05 /* Frameworks */,
+				5066848516B2CB4700ADCB05 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5066848516B2CB4700ADCB05 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5066848416B2CB4700ADCB05 /* PasteboardIOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5066848716B2CB4700ADCB05 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5066848816B2CB4700ADCB05 /* UIKit.framework */,
+				5066848A16B2CB4700ADCB05 /* Foundation.framework */,
+				5066848C16B2CB4700ADCB05 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5066848E16B2CB4700ADCB05 /* PasteboardIOS */ = {
+			isa = PBXGroup;
+			children = (
+				5066849716B2CB4700ADCB05 /* PBAppDelegate.h */,
+				5066849816B2CB4700ADCB05 /* PBAppDelegate.m */,
+				5066848F16B2CB4700ADCB05 /* Supporting Files */,
+				506684B716B2CB8200ADCB05 /* PBDevicesViewController.h */,
+				506684B816B2CB8200ADCB05 /* PBDevicesViewController.m */,
+				506684C416B2D51800ADCB05 /* PBPasteboardConnectionController.h */,
+				506684C516B2D51800ADCB05 /* PBPasteboardConnectionController.m */,
+			);
+			path = PasteboardIOS;
+			sourceTree = "<group>";
+		};
+		5066848F16B2CB4700ADCB05 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5066849016B2CB4700ADCB05 /* PasteboardIOS-Info.plist */,
+				5066849116B2CB4700ADCB05 /* InfoPlist.strings */,
+				5066849416B2CB4700ADCB05 /* main.m */,
+				5066849616B2CB4700ADCB05 /* PasteboardIOS-Prefix.pch */,
+				5066849A16B2CB4700ADCB05 /* Default.png */,
+				5066849C16B2CB4700ADCB05 /* Default@2x.png */,
+				5066849E16B2CB4700ADCB05 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5066848316B2CB4700ADCB05 /* PasteboardIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 506684B416B2CB4800ADCB05 /* Build configuration list for PBXNativeTarget "PasteboardIOS" */;
+			buildPhases = (
+				5066848016B2CB4700ADCB05 /* Sources */,
+				5066848116B2CB4700ADCB05 /* Frameworks */,
+				5066848216B2CB4700ADCB05 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PasteboardIOS;
+			productName = PasteboardIOS;
+			productReference = 5066848416B2CB4700ADCB05 /* PasteboardIOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5066847B16B2CB4700ADCB05 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PB;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Max Winde";
+			};
+			buildConfigurationList = 5066847E16B2CB4700ADCB05 /* Build configuration list for PBXProject "PasteboardIOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 5066847916B2CB4700ADCB05;
+			productRefGroup = 5066848516B2CB4700ADCB05 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5066848316B2CB4700ADCB05 /* PasteboardIOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5066848216B2CB4700ADCB05 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5066849316B2CB4700ADCB05 /* InfoPlist.strings in Resources */,
+				5066849B16B2CB4700ADCB05 /* Default.png in Resources */,
+				5066849D16B2CB4700ADCB05 /* Default@2x.png in Resources */,
+				5066849F16B2CB4700ADCB05 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5066848016B2CB4700ADCB05 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5066849516B2CB4700ADCB05 /* main.m in Sources */,
+				5066849916B2CB4700ADCB05 /* PBAppDelegate.m in Sources */,
+				506684B916B2CB8200ADCB05 /* PBDevicesViewController.m in Sources */,
+				506684C616B2D51800ADCB05 /* PBPasteboardConnectionController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		5066849116B2CB4700ADCB05 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5066849216B2CB4700ADCB05 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		506684B216B2CB4800ADCB05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		506684B316B2CB4800ADCB05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		506684B516B2CB4800ADCB05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PasteboardIOS/PasteboardIOS-Prefix.pch";
+				INFOPLIST_FILE = "PasteboardIOS/PasteboardIOS-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		506684B616B2CB4800ADCB05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PasteboardIOS/PasteboardIOS-Prefix.pch";
+				INFOPLIST_FILE = "PasteboardIOS/PasteboardIOS-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5066847E16B2CB4700ADCB05 /* Build configuration list for PBXProject "PasteboardIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				506684B216B2CB4800ADCB05 /* Debug */,
+				506684B316B2CB4800ADCB05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		506684B416B2CB4800ADCB05 /* Build configuration list for PBXNativeTarget "PasteboardIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				506684B516B2CB4800ADCB05 /* Debug */,
+				506684B616B2CB4800ADCB05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5066847B16B2CB4700ADCB05 /* Project object */;
+}

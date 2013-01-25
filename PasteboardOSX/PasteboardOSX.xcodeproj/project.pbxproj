@@ -1,0 +1,309 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		509C9EC116B2BF4000D6B62A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509C9EC016B2BF4000D6B62A /* Cocoa.framework */; };
+		509C9ECB16B2BF4000D6B62A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 509C9EC916B2BF4000D6B62A /* InfoPlist.strings */; };
+		509C9ECD16B2BF4000D6B62A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 509C9ECC16B2BF4000D6B62A /* main.m */; };
+		509C9ED116B2BF4000D6B62A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 509C9ECF16B2BF4000D6B62A /* Credits.rtf */; };
+		509C9ED416B2BF4000D6B62A /* PBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 509C9ED316B2BF4000D6B62A /* PBAppDelegate.m */; };
+		509C9ED716B2BF4000D6B62A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 509C9ED516B2BF4000D6B62A /* MainMenu.xib */; };
+		509C9EDE16B2BFAE00D6B62A /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509C9EDD16B2BFAE00D6B62A /* IOBluetooth.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		509C9EBC16B2BF4000D6B62A /* PasteboardOSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasteboardOSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		509C9EC016B2BF4000D6B62A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		509C9EC316B2BF4000D6B62A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		509C9EC416B2BF4000D6B62A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		509C9EC516B2BF4000D6B62A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		509C9EC816B2BF4000D6B62A /* PasteboardOSX-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PasteboardOSX-Info.plist"; sourceTree = "<group>"; };
+		509C9ECA16B2BF4000D6B62A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		509C9ECC16B2BF4000D6B62A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		509C9ECE16B2BF4000D6B62A /* PasteboardOSX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PasteboardOSX-Prefix.pch"; sourceTree = "<group>"; };
+		509C9ED016B2BF4000D6B62A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		509C9ED216B2BF4000D6B62A /* PBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAppDelegate.h; sourceTree = "<group>"; };
+		509C9ED316B2BF4000D6B62A /* PBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAppDelegate.m; sourceTree = "<group>"; };
+		509C9ED616B2BF4000D6B62A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		509C9EDD16B2BFAE00D6B62A /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		509C9EB916B2BF4000D6B62A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				509C9EDE16B2BFAE00D6B62A /* IOBluetooth.framework in Frameworks */,
+				509C9EC116B2BF4000D6B62A /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		509C9EB116B2BF4000D6B62A = {
+			isa = PBXGroup;
+			children = (
+				509C9EDD16B2BFAE00D6B62A /* IOBluetooth.framework */,
+				509C9EC616B2BF4000D6B62A /* PasteboardOSX */,
+				509C9EBF16B2BF4000D6B62A /* Frameworks */,
+				509C9EBD16B2BF4000D6B62A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		509C9EBD16B2BF4000D6B62A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				509C9EBC16B2BF4000D6B62A /* PasteboardOSX.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		509C9EBF16B2BF4000D6B62A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				509C9EC016B2BF4000D6B62A /* Cocoa.framework */,
+				509C9EC216B2BF4000D6B62A /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		509C9EC216B2BF4000D6B62A /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				509C9EC316B2BF4000D6B62A /* AppKit.framework */,
+				509C9EC416B2BF4000D6B62A /* CoreData.framework */,
+				509C9EC516B2BF4000D6B62A /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		509C9EC616B2BF4000D6B62A /* PasteboardOSX */ = {
+			isa = PBXGroup;
+			children = (
+				509C9ED216B2BF4000D6B62A /* PBAppDelegate.h */,
+				509C9ED316B2BF4000D6B62A /* PBAppDelegate.m */,
+				509C9ED516B2BF4000D6B62A /* MainMenu.xib */,
+				509C9EC716B2BF4000D6B62A /* Supporting Files */,
+			);
+			path = PasteboardOSX;
+			sourceTree = "<group>";
+		};
+		509C9EC716B2BF4000D6B62A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				509C9EC816B2BF4000D6B62A /* PasteboardOSX-Info.plist */,
+				509C9EC916B2BF4000D6B62A /* InfoPlist.strings */,
+				509C9ECC16B2BF4000D6B62A /* main.m */,
+				509C9ECE16B2BF4000D6B62A /* PasteboardOSX-Prefix.pch */,
+				509C9ECF16B2BF4000D6B62A /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		509C9EBB16B2BF4000D6B62A /* PasteboardOSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 509C9EDA16B2BF4000D6B62A /* Build configuration list for PBXNativeTarget "PasteboardOSX" */;
+			buildPhases = (
+				509C9EB816B2BF4000D6B62A /* Sources */,
+				509C9EB916B2BF4000D6B62A /* Frameworks */,
+				509C9EBA16B2BF4000D6B62A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PasteboardOSX;
+			productName = PasteboardOSX;
+			productReference = 509C9EBC16B2BF4000D6B62A /* PasteboardOSX.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		509C9EB316B2BF4000D6B62A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PB;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Max Winde";
+			};
+			buildConfigurationList = 509C9EB616B2BF4000D6B62A /* Build configuration list for PBXProject "PasteboardOSX" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 509C9EB116B2BF4000D6B62A;
+			productRefGroup = 509C9EBD16B2BF4000D6B62A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				509C9EBB16B2BF4000D6B62A /* PasteboardOSX */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		509C9EBA16B2BF4000D6B62A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				509C9ECB16B2BF4000D6B62A /* InfoPlist.strings in Resources */,
+				509C9ED116B2BF4000D6B62A /* Credits.rtf in Resources */,
+				509C9ED716B2BF4000D6B62A /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		509C9EB816B2BF4000D6B62A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				509C9ECD16B2BF4000D6B62A /* main.m in Sources */,
+				509C9ED416B2BF4000D6B62A /* PBAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		509C9EC916B2BF4000D6B62A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				509C9ECA16B2BF4000D6B62A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		509C9ECF16B2BF4000D6B62A /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				509C9ED016B2BF4000D6B62A /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		509C9ED516B2BF4000D6B62A /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				509C9ED616B2BF4000D6B62A /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		509C9ED816B2BF4000D6B62A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		509C9ED916B2BF4000D6B62A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		509C9EDB16B2BF4000D6B62A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PasteboardOSX/PasteboardOSX-Prefix.pch";
+				INFOPLIST_FILE = "PasteboardOSX/PasteboardOSX-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		509C9EDC16B2BF4000D6B62A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PasteboardOSX/PasteboardOSX-Prefix.pch";
+				INFOPLIST_FILE = "PasteboardOSX/PasteboardOSX-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		509C9EB616B2BF4000D6B62A /* Build configuration list for PBXProject "PasteboardOSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				509C9ED816B2BF4000D6B62A /* Debug */,
+				509C9ED916B2BF4000D6B62A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		509C9EDA16B2BF4000D6B62A /* Build configuration list for PBXNativeTarget "PasteboardOSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				509C9EDB16B2BF4000D6B62A /* Debug */,
+				509C9EDC16B2BF4000D6B62A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 509C9EB316B2BF4000D6B62A /* Project object */;
+}
