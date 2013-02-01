@@ -37,6 +37,7 @@
     if (self) {
         _name = name;
         _pasteboardServiceUUID = [CBUUID UUIDWithString:@"d6f23f70-66ff-11e2-bcfd-0800200c9a66"];
+        _writeCharacteristicUUID = [CBUUID UUIDWithString:@"9606d0b0-6c87-11e2-bcfd-0800200c9a66"];
         
         _connectedPeripherals = [[NSMutableSet alloc] init];
         
@@ -142,6 +143,19 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error;
 {
     NSLog(@"peripheral: %@ didDiscoverCharecteristicsForService: %@ error: %@", peripheral.name, service, error);
+    
+    for (CBCharacteristic *characteristic in service.characteristics) {
+        NSLog(@"characteristic: %@", characteristic);
+        
+        [peripheral writeValue:[[NSString stringWithString:@"Hello!"] dataUsingEncoding:NSUTF8StringEncoding]
+             forCharacteristic:characteristic
+                          type:CBCharacteristicWriteWithResponse];
+    }
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error;
+{
+    NSLog(@"peripheral:didWriteValueForCharacteristic:");
 }
 
 @end

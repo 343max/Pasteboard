@@ -8,6 +8,10 @@
 
 #import "PBPasteboardCentralController.h"
 
+extern NSString * const PBPasteboardDidReceiveTextNotification;
+extern NSString * const PBPasteboardPeripheralKey;
+extern NSString * const PBPasteboardValueKey;
+
 @interface PBPasteboardCentralAndPeripheralController : PBPasteboardCentralController <CBPeripheralManagerDelegate>
 
 @end

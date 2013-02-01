@@ -19,6 +19,8 @@
 - initWithName:(NSString *)name;
 
 @property (strong, readonly) CBUUID *pasteboardServiceUUID;
+@property (strong, readonly) CBUUID *writeCharacteristicUUID;
+
 @property (strong, readonly) NSString *name;
 
 @end

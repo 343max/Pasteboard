@@ -8,6 +8,10 @@
 
 #import "PBPasteboardCentralAndPeripheralController.h"
 
+NSString * const PBPasteboardDidReceiveTextNotification = @"PBPasteboardDidReceiveTextNotification";
+NSString * const PBPasteboardPeripheralKey = @"PBPasteboardPeripheralKey";
+NSString * const PBPasteboardValueKey = @"PBPasteboardValueKey";
+
 @interface PBPasteboardCentralAndPeripheralController ()
 
 @property (strong) CBPeripheralManager *peripheralManager;
@@ -40,9 +44,14 @@
         {
             NSLog(@"CBPeripheralManagerStatePoweredOn");
             
+            CBMutableCharacteristic *characteristic = [[CBMutableCharacteristic alloc] initWithType:self.writeCharacteristicUUID
+                                                                                         properties:CBCharacteristicPropertyWrite
+                                                                                              value:nil
+                                                                                        permissions:CBAttributePermissionsWriteable];
             CBMutableService *service = [[CBMutableService alloc] initWithType:self.pasteboardServiceUUID primary:YES];
+            service.characteristics = @[ characteristic ];
             [peripheral addService:service];
-            
+
             break;
         }
         default:
@@ -70,6 +79,23 @@
 - (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral error:(NSError *)error;
 {
     NSLog(@"peripheralManagerDidStartAdvertising:error: %@", error);
+}
+
+- (void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveWriteRequests:(NSArray *)requests;
+{
+    for (CBATTRequest *request in requests) {
+        NSString *stringValue = [[NSString alloc] initWithData:request.value encoding:NSUTF8StringEncoding];
+        NSLog(@"peripheral:didReceiveWriteRequest: %@", stringValue);
+        
+        NSDictionary *userInfo = @{
+            PBPasteboardPeripheralKey: peripheral,
+            PBPasteboardValueKey: stringValue
+        };
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardDidReceiveTextNotification
+                                                            object:self
+                                                          userInfo:userInfo];
+    }
 }
 
 @end
