@@ -147,7 +147,7 @@
     for (CBCharacteristic *characteristic in service.characteristics) {
         NSLog(@"characteristic: %@", characteristic);
         
-        [peripheral writeValue:[[NSString stringWithString:@"Hello!"] dataUsingEncoding:NSUTF8StringEncoding]
+        [peripheral writeValue:[@"Hello" dataUsingEncoding:NSUTF8StringEncoding]
              forCharacteristic:characteristic
                           type:CBCharacteristicWriteWithResponse];
     }
