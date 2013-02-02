@@ -1,0 +1,4 @@
+Documentation set was installed to Xcode!
+
+Path: /Users/max/Library/Developer/Shared/Documentation/DocSets/us.pandamonia.BlocksKit-1.8.1.docset
+Time: 2013-02-02 17:37:29 +0000

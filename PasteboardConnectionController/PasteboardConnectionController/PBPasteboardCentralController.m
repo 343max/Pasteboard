@@ -55,7 +55,7 @@
 
 - (void)sendText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
 {
-    NSData *value = [@"Hello" dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *value = [text dataUsingEncoding:NSUTF8StringEncoding];
     CBCharacteristic *characteristic = [peripheral characteristicWithUUID:self.writeTextCharacteristicUUID
                                                               serviceUUID:self.pasteboardServiceUUID];
     
@@ -164,7 +164,7 @@
     for (CBCharacteristic *characteristic in service.characteristics) {
         NSLog(@"characteristic: %@", characteristic);
         
-        [self sendText:@"Hello!" toPeripheral:peripheral];
+        [self sendText:@"I can see you!" toPeripheral:peripheral];
     }
 }
 

@@ -12,8 +12,6 @@
 
 @interface PBAppDelegate ()
 
-@property (strong) PBPasteboardCentralAndPeripheralController *connectionController;
-
 - (void)didReceiveText:(NSNotification *)notification;
 
 @end
@@ -23,7 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.connectionController = [[PBPasteboardCentralAndPeripheralController alloc] initWithName:[UIDevice currentDevice].name];
+    _connectionController = [[PBPasteboardCentralAndPeripheralController alloc] initWithName:[UIDevice currentDevice].name];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     PBDevicesViewController *devicesViewController = [[PBDevicesViewController alloc] initWithStyle:UITableViewStylePlain];

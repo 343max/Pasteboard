@@ -6,13 +6,17 @@
 //  Copyright (c) 2013 Max Winde. All rights reserved.
 //
 
+#import <BlocksKit/UIAlertView+BlocksKit.h>
 #import <PasteboardConnectionControllerLibrary/PBPasteboardCentralAndPeripheralController.h>
+#import "PBAppDelegate.h"
 #import "PBDevicesViewController.h"
 
 @interface PBDevicesViewController ()
 
 @property (strong) NSMutableArray *messages;
+@property (strong) UIAlertView *alertView;
 
+- (void)sendText:(id)sender;
 - (void)didReceiveText:(NSNotification *)notification;
 
 @end
@@ -28,6 +32,10 @@
                                                  selector:@selector(didReceiveText:)
                                                      name:PBPasteboardDidReceiveTextNotification
                                                    object:nil];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Send"
+                                                                                  style:UIBarButtonItemStylePlain
+                                                                                 target:self
+                                                                                 action:@selector(sendText:)];
     }
     return self;
 }
@@ -35,6 +43,26 @@
 - (void)dealloc;
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)sendText:(id)sender;
+{
+    self.alertView = [[UIAlertView alloc] initWithTitle:@"Send Message"
+                                                        message:@"Send the following message"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"Send", nil];
+    self.alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [self.alertView textFieldAtIndex:0].placeholder = @"my message";
+    __block PBDevicesViewController *blockSelf = self;
+    [self.alertView setHandler:^{
+        PBPasteboardCentralAndPeripheralController *connectionController = appDelegate.connectionController;
+        NSLog(@"text: %@", [blockSelf.alertView textFieldAtIndex:0].text);
+        [connectionController sendText:[blockSelf.alertView textFieldAtIndex:0].text
+                          toPeripheral:[connectionController.connectedPeripherals anyObject]];
+    } forButtonAtIndex:1];
+    [self.alertView show];
+    
 }
 
 - (void)didReceiveText:(NSNotification *)notification;
