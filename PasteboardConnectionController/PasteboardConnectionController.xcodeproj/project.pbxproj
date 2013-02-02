@@ -17,6 +17,7 @@
 		5066859816B2F7A600ADCB05 /* PBPasteboardCentralAndPeripheralController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5066855616B2EDAA00ADCB05 /* PBPasteboardCentralAndPeripheralController.m */; };
 		5066859916B2F7EE00ADCB05 /* PBPasteboardCentralController.h in Headers */ = {isa = PBXBuildFile; fileRef = 506684E316B2E48500ADCB05 /* PBPasteboardCentralController.h */; };
 		506FC1A016B3072B005CEC8B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506FC19F16B3072B005CEC8B /* CoreBluetooth.framework */; };
+		50E49F7D16BD805300A304E0 /* CBPeripheral+PasteboardConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E49F7C16BD805300A304E0 /* CBPeripheral+PasteboardConnectionController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +49,8 @@
 		5066856316B2F0D700ADCB05 /* PasteboardConnectionControllerFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PasteboardConnectionControllerFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5066857716B2F28400ADCB05 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
 		506FC19F16B3072B005CEC8B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		50E49F7B16BD805300A304E0 /* CBPeripheral+PasteboardConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBPeripheral+PasteboardConnectionController.h"; sourceTree = "<group>"; };
+		50E49F7C16BD805300A304E0 /* CBPeripheral+PasteboardConnectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBPeripheral+PasteboardConnectionController.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,7 @@
 		506684D716B2E46E00ADCB05 /* PasteboardConnectionController */ = {
 			isa = PBXGroup;
 			children = (
+				50E49F7E16BD814600A304E0 /* Categories */,
 				506684E316B2E48500ADCB05 /* PBPasteboardCentralController.h */,
 				506684E416B2E48500ADCB05 /* PBPasteboardCentralController.m */,
 				5066855516B2EDAA00ADCB05 /* PBPasteboardCentralAndPeripheralController.h */,
@@ -130,6 +134,15 @@
 				5066853616B2EB3E00ADCB05 /* Foundation.framework */,
 			);
 			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		50E49F7E16BD814600A304E0 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				50E49F7B16BD805300A304E0 /* CBPeripheral+PasteboardConnectionController.h */,
+				50E49F7C16BD805300A304E0 /* CBPeripheral+PasteboardConnectionController.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +238,7 @@
 			files = (
 				5066859816B2F7A600ADCB05 /* PBPasteboardCentralAndPeripheralController.m in Sources */,
 				5066850A16B2E8FE00ADCB05 /* PBPasteboardCentralController.m in Sources */,
+				50E49F7D16BD805300A304E0 /* CBPeripheral+PasteboardConnectionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

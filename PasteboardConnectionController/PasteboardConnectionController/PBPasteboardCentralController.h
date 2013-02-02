@@ -18,9 +18,13 @@
 
 - initWithName:(NSString *)name;
 
+- (void)sendText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
+
 @property (strong, readonly) CBUUID *pasteboardServiceUUID;
-@property (strong, readonly) CBUUID *writeCharacteristicUUID;
+@property (strong, readonly) CBUUID *writeTextCharacteristicUUID;
 
 @property (strong, readonly) NSString *name;
+
+@property (readonly, nonatomic) NSSet *connectedPeripherals;
 
 @end

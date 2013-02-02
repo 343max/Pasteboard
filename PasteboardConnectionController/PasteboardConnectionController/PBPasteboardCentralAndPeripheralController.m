@@ -44,7 +44,7 @@ NSString * const PBPasteboardValueKey = @"PBPasteboardValueKey";
         {
             NSLog(@"CBPeripheralManagerStatePoweredOn");
             
-            CBMutableCharacteristic *characteristic = [[CBMutableCharacteristic alloc] initWithType:self.writeCharacteristicUUID
+            CBMutableCharacteristic *characteristic = [[CBMutableCharacteristic alloc] initWithType:self.writeTextCharacteristicUUID
                                                                                          properties:CBCharacteristicPropertyWrite
                                                                                               value:nil
                                                                                         permissions:CBAttributePermissionsWriteable];

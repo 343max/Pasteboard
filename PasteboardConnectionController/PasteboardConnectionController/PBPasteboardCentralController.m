@@ -6,18 +6,19 @@
 //  Copyright (c) 2013 Max Winde. All rights reserved.
 //
 
-#import "PBPasteboardCentralController.h"
-
 #if TARGET_OS_IPHONE
 #import <CoreBluetooth/CoreBluetooth.h>
 #else
 #import <IOBluetooth/IOBluetooth.h>
 #endif
 
+#import "CBPeripheral+PasteboardConnectionController.h"
+
+#import "PBPasteboardCentralController.h"
 
 @interface PBPasteboardCentralController ()
 
-@property (strong, readonly) NSMutableSet *connectedPeripherals;
+@property (strong, readonly) NSMutableSet *connectedPeripheralsMutable;
 @property (strong, readonly) CBCentralManager *centralManager;
 
 @end
@@ -37,14 +38,30 @@
     if (self) {
         _name = name;
         _pasteboardServiceUUID = [CBUUID UUIDWithString:@"d6f23f70-66ff-11e2-bcfd-0800200c9a66"];
-        _writeCharacteristicUUID = [CBUUID UUIDWithString:@"9606d0b0-6c87-11e2-bcfd-0800200c9a66"];
+        _writeTextCharacteristicUUID = [CBUUID UUIDWithString:@"9606d0b0-6c87-11e2-bcfd-0800200c9a66"];
         
-        _connectedPeripherals = [[NSMutableSet alloc] init];
+        _connectedPeripheralsMutable = [[NSMutableSet alloc] init];
         
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     }
     
     return self;
+}
+
+- (NSSet *)connectedPeripherals;
+{
+    return self.connectedPeripheralsMutable;
+}
+
+- (void)sendText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
+{
+    NSData *value = [@"Hello" dataUsingEncoding:NSUTF8StringEncoding];
+    CBCharacteristic *characteristic = [peripheral characteristicWithUUID:self.writeTextCharacteristicUUID
+                                                              serviceUUID:self.pasteboardServiceUUID];
+    
+    [peripheral writeValue:value
+         forCharacteristic:characteristic
+                      type:CBCharacteristicWriteWithResponse];
 }
 
 #pragma mark CBCentralManagerDelegate
@@ -92,8 +109,8 @@
 {
     NSLog(@"centralManager:didDiscoverPeripheral: %@\n                   advertisementData: %@\n                                RSSI: %@", peripheral.name, advertisementData, RSSI);
     
-    if (![self.connectedPeripherals containsObject:peripheral]) {
-        [self.connectedPeripherals addObject:peripheral];
+    if (![self.connectedPeripheralsMutable containsObject:peripheral]) {
+        [self.connectedPeripheralsMutable addObject:peripheral];
         [central connectPeripheral:peripheral options:nil];
     }
 }
@@ -108,14 +125,14 @@
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error;
 {
-    [self.connectedPeripherals removeObject:peripheral];
+    [self.connectedPeripheralsMutable removeObject:peripheral];
     
     NSLog(@"didFailToConnectPeripheral: %@ error: %@", peripheral.name, error);
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error;
 {
-    [self.connectedPeripherals removeObject:peripheral];
+    [self.connectedPeripheralsMutable removeObject:peripheral];
     
     NSLog(@"didDisconnectPeripheral: %@ error: %@", peripheral.name, error);
 }
@@ -147,9 +164,7 @@
     for (CBCharacteristic *characteristic in service.characteristics) {
         NSLog(@"characteristic: %@", characteristic);
         
-        [peripheral writeValue:[@"Hello" dataUsingEncoding:NSUTF8StringEncoding]
-             forCharacteristic:characteristic
-                          type:CBCharacteristicWriteWithResponse];
+        [self sendText:@"Hello!" toPeripheral:peripheral];
     }
 }
 
