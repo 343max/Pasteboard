@@ -16,6 +16,10 @@
 
 #import "PBPasteboardCentralController.h"
 
+NSString * const PBPasteboardCentralControllerPeripheralWasConnectedNotification = @"PBPasteboardCentralControllerPeripheralWasConnectedNotification";
+NSString * const PBPasteboardCentralControllerPeripheralWasDisconnectedNotification = @"PBPasteboardCentralControllerPeripheralWasDisconnectedNotification";
+NSString * const PBPasteboardCentralControllerPeripheralKey = @"PBPasteboardCentralControllerPeripheralKey";
+
 @interface PBPasteboardCentralController ()
 
 @property (strong, readonly) NSMutableSet *connectedPeripheralsMutable;
@@ -132,7 +136,12 @@
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error;
 {
-    [self.connectedPeripheralsMutable removeObject:peripheral];
+    if ([self.connectedPeripheralsMutable containsObject:peripheral]) {
+        [self.connectedPeripheralsMutable removeObject:peripheral];
+        [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardCentralControllerPeripheralWasDisconnectedNotification
+                                                            object:self
+                                                          userInfo:@{ PBPasteboardCentralControllerPeripheralKey: peripheral }];
+    }
     
     NSLog(@"didDisconnectPeripheral: %@ error: %@", peripheral.name, error);
 }
@@ -161,6 +170,10 @@
 {
     NSLog(@"peripheral: %@ didDiscoverCharecteristicsForService: %@ error: %@", peripheral.name, service, error);
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardCentralControllerPeripheralWasConnectedNotification
+                                                        object:self
+                                                      userInfo:@{ PBPasteboardCentralControllerPeripheralKey: peripheral }];
+
     for (CBCharacteristic *characteristic in service.characteristics) {
         NSLog(@"characteristic: %@", characteristic);
         

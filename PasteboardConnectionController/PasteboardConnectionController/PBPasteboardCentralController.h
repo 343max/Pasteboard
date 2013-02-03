@@ -14,6 +14,11 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const PBPasteboardCentralControllerPeripheralWasConnectedNotification;
+extern NSString * const PBPasteboardCentralControllerPeripheralWasDisconnectedNotification;
+extern NSString * const PBPasteboardCentralControllerPeripheralKey;
+
+
 @interface PBPasteboardCentralController : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
 - initWithName:(NSString *)name;

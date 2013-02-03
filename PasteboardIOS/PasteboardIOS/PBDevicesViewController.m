@@ -18,6 +18,7 @@
 
 - (void)sendText:(id)sender;
 - (void)didReceiveText:(NSNotification *)notification;
+- (void)peripheralCountChanged:(NSNotification *)notification;
 
 @end
 
@@ -32,10 +33,21 @@
                                                  selector:@selector(didReceiveText:)
                                                      name:PBPasteboardDidReceiveTextNotification
                                                    object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(peripheralCountChanged:)
+                                                     name:PBPasteboardCentralControllerPeripheralWasConnectedNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(peripheralCountChanged:)
+                                                     name:PBPasteboardCentralControllerPeripheralWasDisconnectedNotification
+                                                   object:nil];
+        
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Send"
                                                                                   style:UIBarButtonItemStylePlain
                                                                                  target:self
                                                                                  action:@selector(sendText:)];
+        
+        [self peripheralCountChanged:nil];
     }
     return self;
 }
@@ -72,6 +84,11 @@
     [self.messages addObject:text];
     
     [self.tableView reloadData];
+}
+
+- (void)peripheralCountChanged:(NSNotification *)notification;
+{
+    self.title = [NSString stringWithFormat:@"%i peripherals", appDelegate.connectionController.connectedPeripherals.count];
 }
 
 - (void)viewDidLoad;
