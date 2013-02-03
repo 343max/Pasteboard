@@ -62,7 +62,7 @@ NSString * const PBPasteboardCentralControllerPeripheralKey = @"PBPasteboardCent
     NSData *value = [text dataUsingEncoding:NSUTF8StringEncoding];
     CBCharacteristic *characteristic = [peripheral characteristicWithUUID:self.writeTextCharacteristicUUID
                                                               serviceUUID:self.pasteboardServiceUUID];
-    
+    NSAssert(characteristic != nil, @"characteristic must not be nil");
     [peripheral writeValue:value
          forCharacteristic:characteristic
                       type:CBCharacteristicWriteWithResponse];
