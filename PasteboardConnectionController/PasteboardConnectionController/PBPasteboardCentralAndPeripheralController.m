@@ -83,14 +83,33 @@ NSString * const PBPasteboardValueKey = @"PBPasteboardValueKey";
     PBLog(@"peripheralManagerDidStartAdvertising:error: %@", error);
 }
 
-- (void)peripheralManager:(CBPeripheralManager *)peripheralManager didReceiveWriteRequests:(NSArray *)requests;
+- (void)peripheralManager:(CBPeripheralManager *)peripheral
+                  central:(CBCentral *)central
+didSubscribeToCharacteristic:(CBCharacteristic *)characteristic;
+{
+    PBLog(@"peripheralManager:central:didSubscribeToCharacteristic: %@", characteristic);
+}
+
+- (void)peripheralManager:(CBPeripheralManager *)peripheral
+                  central:(CBCentral *)central
+didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic;
+{
+    PBLog(@"peripheralManager:central:didUnsubscribeFromCharacteristic: %@", characteristic);
+}
+
+- (void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveReadRequest:(CBATTRequest *)request;
+{
+    PBLog(@"peripheralManager:didReceiveReadRequest: %@", request);
+}
+
+- (void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveWriteRequests:(NSArray *)requests;
 {
     for (CBATTRequest *request in requests) {
         NSString *stringValue = [[NSString alloc] initWithData:request.value encoding:NSUTF8StringEncoding];
         PBLog(@"peripheral:didReceiveWriteRequest: %@", stringValue);
         
         NSDictionary *userInfo = @{
-            PBPasteboardPeripheralKey: peripheralManager,
+            PBPasteboardPeripheralKey: peripheral,
             PBPasteboardValueKey: stringValue
         };
         
