@@ -80,8 +80,9 @@
 - (void)didReceiveText:(NSNotification *)notification;
 {
     NSString *text = notification.userInfo[PBPasteboardValueKey];
+    CBPeripheral *peripheral = notification.userInfo[PBPasteboardCentralControllerPeripheralKey];
     
-    [self.messages addObject:text];
+    [self.messages addObject:[NSString stringWithFormat:@"%@: %@", peripheral.name, text]];
     
     [self.tableView reloadData];
 }
