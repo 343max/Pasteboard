@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		505151A016BDE41D00A1C914 /* CBPeripheral+PasteboardConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E49F7C16BD805300A304E0 /* CBPeripheral+PasteboardConnectionController.m */; };
 		506684D616B2E46E00ADCB05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506684D516B2E46E00ADCB05 /* Foundation.framework */; };
 		5066850916B2E8BE00ADCB05 /* PBPasteboardCentralController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 506684E316B2E48500ADCB05 /* PBPasteboardCentralController.h */; };
 		5066850A16B2E8FE00ADCB05 /* PBPasteboardCentralController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506684E416B2E48500ADCB05 /* PBPasteboardCentralController.m */; };
@@ -247,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5066857216B2F0E600ADCB05 /* PBPasteboardCentralController.m in Sources */,
+				505151A016BDE41D00A1C914 /* CBPeripheral+PasteboardConnectionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,9 +346,9 @@
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "OSXPasteboardConnectionController/OSXPasteboardConnectionController-Prefix.pch";
+				GCC_PREFIX_HEADER = "PasteboardConnectionController/PasteboardConnectionController-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				INFOPLIST_FILE = "OSXPasteboardConnectionController/OSXPasteboardConnectionController-Info.plist";
+				INFOPLIST_FILE = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -370,9 +372,9 @@
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "OSXPasteboardConnectionController/OSXPasteboardConnectionController-Prefix.pch";
+				GCC_PREFIX_HEADER = "PasteboardConnectionController/PasteboardConnectionController-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				INFOPLIST_FILE = "OSXPasteboardConnectionController/OSXPasteboardConnectionController-Info.plist";
+				INFOPLIST_FILE = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

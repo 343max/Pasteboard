@@ -6,7 +6,11 @@
 //  Copyright (c) 2013 Max Winde. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
 #import <CoreBluetooth/CoreBluetooth.h>
+#else
+#import <IOBluetooth/IOBluetooth.h>
+#endif
 
 @interface CBPeripheral (PasteboardConnectionController)
 

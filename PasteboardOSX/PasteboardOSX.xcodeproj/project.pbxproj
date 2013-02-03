@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5051519F16BDE3E200A1C914 /* PasteboardConnectionControllerFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5051519E16BDE3E200A1C914 /* PasteboardConnectionControllerFramework.framework */; };
 		5066855A16B2EFC400ADCB05 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5066855916B2EFC400ADCB05 /* SystemConfiguration.framework */; };
-		5066857616B2F25A00ADCB05 /* OSXPasteboardConnectionController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5066857516B2F25A00ADCB05 /* OSXPasteboardConnectionController.framework */; };
 		509C9EC116B2BF4000D6B62A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509C9EC016B2BF4000D6B62A /* Cocoa.framework */; };
 		509C9ECB16B2BF4000D6B62A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 509C9EC916B2BF4000D6B62A /* InfoPlist.strings */; };
 		509C9ECD16B2BF4000D6B62A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 509C9ECC16B2BF4000D6B62A /* main.m */; };
@@ -19,8 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5051519E16BDE3E200A1C914 /* PasteboardConnectionControllerFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = file; name = PasteboardConnectionControllerFramework.framework; path = ../PasteboardConnectionController/build/Release/PasteboardConnectionControllerFramework.framework; sourceTree = "<group>"; };
 		5066855916B2EFC400ADCB05 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		5066857516B2F25A00ADCB05 /* OSXPasteboardConnectionController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OSXPasteboardConnectionController.framework; path = "../../../Library/Developer/Xcode/DerivedData/PasteboardOSX-egpuzcalzeoydnftfyzyecdfsmqu/Build/Products/Debug/OSXPasteboardConnectionController.framework"; sourceTree = "<group>"; };
 		509C9EBC16B2BF4000D6B62A /* PasteboardOSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasteboardOSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		509C9EC016B2BF4000D6B62A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		509C9EC316B2BF4000D6B62A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -45,7 +45,7 @@
 				5066855A16B2EFC400ADCB05 /* SystemConfiguration.framework in Frameworks */,
 				509C9EDE16B2BFAE00D6B62A /* IOBluetooth.framework in Frameworks */,
 				509C9EC116B2BF4000D6B62A /* Cocoa.framework in Frameworks */,
-				5066857616B2F25A00ADCB05 /* OSXPasteboardConnectionController.framework in Frameworks */,
+				5051519F16BDE3E200A1C914 /* PasteboardConnectionControllerFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,10 +72,10 @@
 		509C9EBF16B2BF4000D6B62A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5051519E16BDE3E200A1C914 /* PasteboardConnectionControllerFramework.framework */,
 				5066855916B2EFC400ADCB05 /* SystemConfiguration.framework */,
 				509C9EDD16B2BFAE00D6B62A /* IOBluetooth.framework */,
 				509C9EC016B2BF4000D6B62A /* Cocoa.framework */,
-				5066857516B2F25A00ADCB05 /* OSXPasteboardConnectionController.framework */,
 				509C9EC216B2BF4000D6B62A /* Other Frameworks */,
 			);
 			name = Frameworks;
