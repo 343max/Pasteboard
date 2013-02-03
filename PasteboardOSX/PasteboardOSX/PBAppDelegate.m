@@ -12,7 +12,8 @@
 
 @interface PBAppDelegate ()
 
-@property (strong) PBPasteboardCentralController *pasteboardController;
+- (void)peripheralCountChanged:(NSNotification *)notification;
+
 
 @end
 
@@ -22,7 +23,23 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     NSString *computerName = (__bridge NSString *)SCDynamicStoreCopyComputerName(NULL, NULL);
-    self.pasteboardController = [[PBPasteboardCentralController alloc] initWithName:computerName];
+    _pasteboardController = [[PBPasteboardCentralController alloc] initWithName:computerName];
+
+    [self peripheralCountChanged:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(peripheralCountChanged:)
+                                                 name:PBPasteboardCentralControllerPeripheralWasConnectedNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(peripheralCountChanged:)
+                                                 name:PBPasteboardCentralControllerPeripheralWasDisconnectedNotification
+                                               object:nil];
+}
+
+- (void)peripheralCountChanged:(NSNotification *)notification;
+{
+    self.window.title = [NSString stringWithFormat:@"%lu peripherals", (unsigned long)self.pasteboardController.connectedPeripherals.count];
 }
 
 @end
