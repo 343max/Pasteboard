@@ -8,6 +8,8 @@
 
 #import "PBPasteboardCentralAndPeripheralController.h"
 
+#define PBLog(format, ...) [self postEventNotification:[NSString stringWithFormat:format, ##__VA_ARGS__]]
+
 NSString * const PBPasteboardDidReceiveTextNotification = @"PBPasteboardDidReceiveTextNotification";
 NSString * const PBPasteboardPeripheralKey = @"PBPasteboardPeripheralKey";
 NSString * const PBPasteboardValueKey = @"PBPasteboardValueKey";
@@ -37,12 +39,12 @@ NSString * const PBPasteboardValueKey = @"PBPasteboardValueKey";
 
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral;
 {
-    NSLog(@"peripheralManagerDidUpdateState: %i", peripheral.state);
+    PBLog(@"peripheralManagerDidUpdateState: %i", peripheral.state);
     
     switch (peripheral.state) {
         case CBPeripheralManagerStatePoweredOn:
         {
-            NSLog(@"CBPeripheralManagerStatePoweredOn");
+            PBLog(@"CBPeripheralManagerStatePoweredOn");
             
             CBMutableCharacteristic *characteristic = [[CBMutableCharacteristic alloc] initWithType:self.writeTextCharacteristicUUID
                                                                                          properties:CBCharacteristicPropertyWrite
@@ -56,7 +58,7 @@ NSString * const PBPasteboardValueKey = @"PBPasteboardValueKey";
         }
         default:
         {
-            NSLog(@"don't know what to do");
+            PBLog(@"don't know what to do");
             break;
         }
     }
@@ -64,31 +66,31 @@ NSString * const PBPasteboardValueKey = @"PBPasteboardValueKey";
 
 - (void)peripheralManager:(CBPeripheralManager *)peripheral didAddService:(CBService *)service error:(NSError *)error;
 {
-    NSLog(@"peripheralManager:didAddService: %@ error: %@", service, error);
+    PBLog(@"peripheralManager:didAddService: %@ error: %@", service, error);
     
     NSDictionary *dict = @{
         CBAdvertisementDataLocalNameKey: self.name,
         CBAdvertisementDataServiceUUIDsKey: @[ self.pasteboardServiceUUID ]
     };
     
-    NSLog(@"advertismentData: %@", dict);
+    PBLog(@"advertismentData: %@", dict);
     
     [peripheral startAdvertising:dict];
 }
 
 - (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral error:(NSError *)error;
 {
-    NSLog(@"peripheralManagerDidStartAdvertising:error: %@", error);
+    PBLog(@"peripheralManagerDidStartAdvertising:error: %@", error);
 }
 
-- (void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveWriteRequests:(NSArray *)requests;
+- (void)peripheralManager:(CBPeripheralManager *)peripheralManager didReceiveWriteRequests:(NSArray *)requests;
 {
     for (CBATTRequest *request in requests) {
         NSString *stringValue = [[NSString alloc] initWithData:request.value encoding:NSUTF8StringEncoding];
-        NSLog(@"peripheral:didReceiveWriteRequest: %@", stringValue);
+        PBLog(@"peripheral:didReceiveWriteRequest: %@", stringValue);
         
         NSDictionary *userInfo = @{
-            PBPasteboardPeripheralKey: peripheral,
+            PBPasteboardPeripheralKey: peripheralManager,
             PBPasteboardValueKey: stringValue
         };
         

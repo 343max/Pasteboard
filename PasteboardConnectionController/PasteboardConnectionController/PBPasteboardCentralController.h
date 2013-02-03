@@ -18,12 +18,16 @@ extern NSString * const PBPasteboardCentralControllerPeripheralWasConnectedNotif
 extern NSString * const PBPasteboardCentralControllerPeripheralWasDisconnectedNotification;
 extern NSString * const PBPasteboardCentralControllerPeripheralKey;
 
+extern NSString * const PBPasteboardCentralControllerEventNotification;
+
 
 @interface PBPasteboardCentralController : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
 - initWithName:(NSString *)name;
 
 - (void)sendText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
+
+- (void)postEventNotification:(NSString *)notificationText;
 
 @property (strong, readonly) CBUUID *pasteboardServiceUUID;
 @property (strong, readonly) CBUUID *writeTextCharacteristicUUID;

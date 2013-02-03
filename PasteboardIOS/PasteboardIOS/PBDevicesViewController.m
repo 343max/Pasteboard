@@ -18,6 +18,7 @@
 
 - (void)sendText:(id)sender;
 - (void)didReceiveText:(NSNotification *)notification;
+- (void)didReceiveEvent:(NSNotification *)notification;
 - (void)peripheralCountChanged:(NSNotification *)notification;
 
 @end
@@ -32,6 +33,10 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(didReceiveText:)
                                                      name:PBPasteboardDidReceiveTextNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didReceiveEvent:)
+                                                     name:PBPasteboardCentralControllerEventNotification
                                                    object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(peripheralCountChanged:)
@@ -82,7 +87,26 @@
     NSString *text = notification.userInfo[PBPasteboardValueKey];
     CBPeripheral *peripheral = notification.userInfo[PBPasteboardCentralControllerPeripheralKey];
     
-    [self.messages addObject:[NSString stringWithFormat:@"%@: %@", peripheral.name, text]];
+    if (peripheral == nil) {
+        peripheral = (id)[NSNull null];
+    }
+    
+    [self.messages addObject:@{
+        @"kind": @"Text",
+        @"message": text,
+        @"peripheral": peripheral
+    }];
+    
+    [self.tableView reloadData];
+}
+
+- (void)didReceiveEvent:(NSNotification *)notification;
+{
+    [self.messages addObject:@{
+        @"kind": @"Log",
+        @"message": notification.userInfo[@"text"],
+        @"date": [NSDate date]
+    }];
     
     [self.tableView reloadData];
 }
@@ -90,11 +114,13 @@
 - (void)peripheralCountChanged:(NSNotification *)notification;
 {
     self.title = [NSString stringWithFormat:@"%i peripherals", appDelegate.connectionController.connectedPeripherals.count];
+    self.navigationItem.rightBarButtonItem.enabled = (appDelegate.connectionController.connectedPeripherals.count) != 0;
 }
 
 - (void)viewDidLoad;
 {
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Text"];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Log"];
 }
 
 #pragma mark - Table view data source
@@ -111,10 +137,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    NSDictionary *dict = self.messages[indexPath.row];
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:dict[@"kind"]
+                                                            forIndexPath:indexPath];
     
-    cell.textLabel.text = self.messages[indexPath.row];
+
+    if ([dict[@"kind"] isEqualToString:@"Text"]) {
+        CBPeripheral *peripheral = dict[@"peripheral"];
+        cell.textLabel.text = dict[@"message"];
+        if ([NSNull null] != (id)peripheral) {
+            cell.detailTextLabel.text = peripheral.name;
+        }
+    } else if([dict[@"kind"] isEqualToString:@"Log"]) {
+        cell.textLabel.text = dict[@"message"];
+        cell.detailTextLabel.text = dict[@"date"];
+        cell.textLabel.font = [UIFont fontWithName:@"Courier" size:11.0];
+        cell.textLabel.numberOfLines = 0;
+    }
     
     return cell;
 }
