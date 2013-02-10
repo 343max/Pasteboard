@@ -34,7 +34,10 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
 
 @property (strong, nonatomic) NSArray *registeredPeripheralsUUIDs;
 
+@property (strong, readonly) NSTimer *updateRSSITimer;
+
 - (void)postEventNotification:(NSString *)notificationText;
+- (void)updateRSSIOFAllDevices:(NSTimer *)timer;
 
 @end
 
@@ -57,6 +60,12 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
         _discoveredUnconnectedPeripherals = [[NSMutableSet alloc] init];
         
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        
+        _updateRSSITimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                            target:self
+                                                          selector:@selector(updateRSSIOFAllDevices:)
+                                                          userInfo:nil
+                                                           repeats:YES];
     }
     
     return self;
@@ -67,7 +76,17 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
     [self.centralManager scanForPeripheralsWithServices:@[ [PBPasteboardUUIDs serviceUUID] ] options:nil];
 }
 
+- (void)reconnectPeripherals;
+{
+    [self.centralManager retrievePeripherals:self.registeredPeripheralsUUIDs];
+}
 
+- (void)updateRSSIOFAllDevices:(NSTimer *)timer;
+{
+    for (CBPeripheral *peripheral in [self.connectedPeripherals allObjects]) {
+        [peripheral readRSSI];
+    }
+}
 
 - (void)sendText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
 {
@@ -90,6 +109,7 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
 
 
 #pragma mark Accessors
+
 @synthesize registeredPeripheralsUUIDs = _registeredPeripheralsUUIDs;
 
 - (NSArray *)registeredPeripheralsUUIDs;
@@ -123,6 +143,23 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:uuidsData forKey:@"RegisteredPeripherals"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)setConnectedPeripherals:(NSSet *)connectedPeripherals;
+{
+    if ([connectedPeripherals isEqualToSet:_connectedPeripherals]) {
+        return;
+    }
+    
+    _connectedPeripherals = connectedPeripherals;
+    
+    NSMutableArray *connectedPeripheralsUUIDs = [[NSMutableArray alloc] initWithCapacity:connectedPeripherals.count];
+    for (CBPeripheral *peripheral in connectedPeripherals) {
+        [connectedPeripheralsUUIDs addObject:[CBUUID UUIDWithCFUUID:peripheral.UUID]];
+    }
+    
+    self.registeredPeripheralsUUIDs = connectedPeripheralsUUIDs;
 }
 
 #pragma mark CBCentralManagerDelegate
@@ -155,6 +192,7 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
         case CBCentralManagerStatePoweredOn:
         {
             PBLog(@"CBCentralManagerStatePoweredOn");
+            [self reconnectPeripherals];
             [self scanForPeripherals];
 
             break;
@@ -217,6 +255,13 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
 
 
 #pragma mark CBPeripheralDelegate
+
+- (void)centralManager:(CBCentralManager *)central didRetrievePeripherals:(NSArray *)peripherals;
+{
+    for (CBPeripheral *peripheral in peripherals) {
+        [central connectPeripheral:peripheral options:nil];
+    }
+}
 
 - (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(NSError *)error;
 {
