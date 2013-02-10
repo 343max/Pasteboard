@@ -6,34 +6,47 @@
 //  Copyright (c) 2013 Max Winde. All rights reserved.
 //
 
-#import "PBPasteboardCentralAndPeripheralController.h"
+#import <CoreBluetooth/CoreBluetooth.h>
+#import "PBPasteboardUUIDs.h"
+#import "PBPasteboardPeripheralController.h"
 
 #define PBLog(format, ...) [self postEventNotification:[NSString stringWithFormat:format, ##__VA_ARGS__]]
 
+NSString * const PBPasteboardPeripheralControllerEventNotification = @"PBPasteboardPeripheralControllerEventNotification";
 NSString * const PBPasteboardDidReceiveTextNotification = @"PBPasteboardDidReceiveTextNotification";
 NSString * const PBPasteboardPeripheralKey = @"PBPasteboardPeripheralKey";
 NSString * const PBPasteboardValueKey = @"PBPasteboardValueKey";
 
-@interface PBPasteboardCentralAndPeripheralController ()
+@interface PBPasteboardPeripheralController ()
 
 @property (strong) CBPeripheralManager *peripheralManager;
+
+- (void)postEventNotification:(NSString *)notificationText;
 
 @end
 
 
-@implementation PBPasteboardCentralAndPeripheralController
+@implementation PBPasteboardPeripheralController
 
 - (id)initWithName:(NSString *)name;
 {
-    self = [super initWithName:name];
+    self = [super init];
     
     if (self) {
+        _name = name;
         _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
     }
     
     return self;
 }
 
+- (void)postEventNotification:(NSString *)notificationText;
+{
+    NSLog(@"%@", notificationText);
+    [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardPeripheralControllerEventNotification
+                                                        object:self
+                                                      userInfo:@{ @"text" : notificationText }];
+}
 
 #pragma mark CBPeripheralManagerDelegate
 
@@ -46,11 +59,11 @@ NSString * const PBPasteboardValueKey = @"PBPasteboardValueKey";
         {
             PBLog(@"CBPeripheralManagerStatePoweredOn");
             
-            CBMutableCharacteristic *characteristic = [[CBMutableCharacteristic alloc] initWithType:self.writeTextCharacteristicUUID
+            CBMutableCharacteristic *characteristic = [[CBMutableCharacteristic alloc] initWithType:[PBPasteboardUUIDs writeTextCharcteristicsUUID]
                                                                                          properties:CBCharacteristicPropertyWrite
                                                                                               value:nil
                                                                                         permissions:CBAttributePermissionsWriteable];
-            CBMutableService *service = [[CBMutableService alloc] initWithType:self.pasteboardServiceUUID primary:YES];
+            CBMutableService *service = [[CBMutableService alloc] initWithType:[PBPasteboardUUIDs serviceUUID] primary:YES];
             service.characteristics = @[ characteristic ];
             [peripheral addService:service];
 
@@ -70,7 +83,7 @@ NSString * const PBPasteboardValueKey = @"PBPasteboardValueKey";
     
     NSDictionary *dict = @{
         CBAdvertisementDataLocalNameKey: self.name,
-        CBAdvertisementDataServiceUUIDsKey: @[ self.pasteboardServiceUUID ]
+        CBAdvertisementDataServiceUUIDsKey: @[ [PBPasteboardUUIDs serviceUUID] ]
     };
     
     PBLog(@"advertismentData: %@", dict);

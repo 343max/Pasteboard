@@ -14,6 +14,7 @@
 
 #import "CBPeripheral+PasteboardConnectionController.h"
 
+#import "PBPasteboardUUIDs.h"
 #import "PBPasteboardCentralController.h"
 
 #define PBLog(format, ...) [self postEventNotification:[NSString stringWithFormat:format, ##__VA_ARGS__]]
@@ -33,6 +34,8 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
 
 @property (strong, nonatomic) NSArray *registeredPeripheralsUUIDs;
 
+- (void)postEventNotification:(NSString *)notificationText;
+
 @end
 
 
@@ -49,8 +52,6 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
     
     if (self) {
         _name = name;
-        _pasteboardServiceUUID = [CBUUID UUIDWithString:@"d6f23f70-66ff-11e2-bcfd-0800200c9a66"];
-        _writeTextCharacteristicUUID = [CBUUID UUIDWithString:@"9606d0b0-6c87-11e2-bcfd-0800200c9a66"];
         
         _connectedPeripherals = [[NSSet alloc] init];
         _discoveredUnconnectedPeripherals = [[NSMutableSet alloc] init];
@@ -63,7 +64,7 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
 
 - (void)scanForPeripherals;
 {
-    [self.centralManager scanForPeripheralsWithServices:@[ self.pasteboardServiceUUID ] options:nil];
+    [self.centralManager scanForPeripheralsWithServices:@[ [PBPasteboardUUIDs serviceUUID] ] options:nil];
 }
 
 
@@ -71,8 +72,8 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
 - (void)sendText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
 {
     NSData *value = [text dataUsingEncoding:NSUTF8StringEncoding];
-    CBCharacteristic *characteristic = [peripheral characteristicWithUUID:self.writeTextCharacteristicUUID
-                                                              serviceUUID:self.pasteboardServiceUUID];
+    CBCharacteristic *characteristic = [peripheral characteristicWithUUID:[PBPasteboardUUIDs writeTextCharcteristicsUUID]
+                                                              serviceUUID:[PBPasteboardUUIDs serviceUUID]];
     NSAssert(characteristic != nil, @"characteristic must not be nil");
     [peripheral writeValue:value
          forCharacteristic:characteristic
@@ -189,7 +190,7 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
     self.connectedPeripherals = [self.connectedPeripherals setByAddingObject:peripheral];
 
     peripheral.delegate = self;
-    [peripheral discoverServices:@[ self.pasteboardServiceUUID ]];
+    [peripheral discoverServices:@[ [PBPasteboardUUIDs serviceUUID] ]];
 }
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error;
@@ -228,7 +229,7 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
     PBLog(@"services: %@", peripheral.services);
     
     for (CBService *service in peripheral.services) {
-        if ([service.UUID isEqual:self.pasteboardServiceUUID]) {
+        if ([service.UUID isEqual:[PBPasteboardUUIDs serviceUUID]]) {
             [peripheral discoverCharacteristics:nil forService:service];
         }
     }

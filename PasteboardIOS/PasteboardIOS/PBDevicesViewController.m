@@ -7,7 +7,8 @@
 //
 
 #import <BlocksKit/UIAlertView+BlocksKit.h>
-#import <PasteboardConnectionControllerLibrary/PBPasteboardCentralAndPeripheralController.h>
+#import <PasteboardConnectionControllerLibrary/PBPasteboardCentralController.h>
+#import <PasteboardConnectionControllerLibrary/PBPasteboardPeripheralController.h>
 #import "PBAppDelegate.h"
 #import "PBDevicesViewController.h"
 
@@ -37,6 +38,10 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(didReceiveEvent:)
                                                      name:PBPasteboardCentralControllerEventNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didReceiveEvent:)
+                                                     name:PBPasteboardPeripheralControllerEventNotification
                                                    object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(peripheralCountChanged:)
@@ -73,10 +78,10 @@
     [self.alertView textFieldAtIndex:0].placeholder = @"my message";
     __block PBDevicesViewController *blockSelf = self;
     [self.alertView setHandler:^{
-        PBPasteboardCentralAndPeripheralController *connectionController = appDelegate.connectionController;
+        PBPasteboardCentralController *centralController = appDelegate.centralController;
         NSLog(@"text: %@", [blockSelf.alertView textFieldAtIndex:0].text);
-        [connectionController sendText:[blockSelf.alertView textFieldAtIndex:0].text
-                          toPeripheral:[connectionController.connectedPeripherals anyObject]];
+        [centralController sendText:[blockSelf.alertView textFieldAtIndex:0].text
+                       toPeripheral:[centralController.connectedPeripherals anyObject]];
     } forButtonAtIndex:1];
     [self.alertView show];
     
@@ -113,8 +118,8 @@
 
 - (void)peripheralCountChanged:(NSNotification *)notification;
 {
-    self.title = [NSString stringWithFormat:@"%i peripherals", appDelegate.connectionController.connectedPeripherals.count];
-    self.navigationItem.rightBarButtonItem.enabled = (appDelegate.connectionController.connectedPeripherals.count) != 0;
+    self.title = [NSString stringWithFormat:@"%i peripherals", appDelegate.centralController.connectedPeripherals.count];
+    self.navigationItem.rightBarButtonItem.enabled = (appDelegate.centralController.connectedPeripherals.count) != 0;
 }
 
 - (void)viewDidLoad;

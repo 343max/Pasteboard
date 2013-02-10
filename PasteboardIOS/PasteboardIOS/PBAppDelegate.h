@@ -11,13 +11,15 @@
 
 #define appDelegate ((PBAppDelegate *)[[UIApplication sharedApplication] delegate])
 
-@class PBPasteboardCentralAndPeripheralController;
+@class PBPasteboardCentralController;
+@class PBPasteboardPeripheralController;
 
 @interface PBAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *navigationController;
 
-@property (strong, readonly) PBPasteboardCentralAndPeripheralController *connectionController;
+@property (strong, readonly) PBPasteboardPeripheralController *peripheralController;
+@property (strong, readonly) PBPasteboardCentralController *centralController;
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5049DE4016C7F82300793473 /* PBPasteboardUUIDs.m in Sources */ = {isa = PBXBuildFile; fileRef = 5049DE3F16C7F82200793473 /* PBPasteboardUUIDs.m */; };
 		505151A016BDE41D00A1C914 /* CBPeripheral+PasteboardConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E49F7C16BD805300A304E0 /* CBPeripheral+PasteboardConnectionController.m */; };
 		506684D616B2E46E00ADCB05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506684D516B2E46E00ADCB05 /* Foundation.framework */; };
 		5066850916B2E8BE00ADCB05 /* PBPasteboardCentralController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 506684E316B2E48500ADCB05 /* PBPasteboardCentralController.h */; };
@@ -14,8 +15,8 @@
 		5066856416B2F0D700ADCB05 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5066853116B2EB3E00ADCB05 /* Cocoa.framework */; };
 		5066857216B2F0E600ADCB05 /* PBPasteboardCentralController.m in Sources */ = {isa = PBXBuildFile; fileRef = 506684E416B2E48500ADCB05 /* PBPasteboardCentralController.m */; };
 		5066857816B2F28400ADCB05 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5066857716B2F28400ADCB05 /* IOBluetooth.framework */; };
-		5066859116B2F54100ADCB05 /* PBPasteboardCentralAndPeripheralController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5066855516B2EDAA00ADCB05 /* PBPasteboardCentralAndPeripheralController.h */; };
-		5066859816B2F7A600ADCB05 /* PBPasteboardCentralAndPeripheralController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5066855616B2EDAA00ADCB05 /* PBPasteboardCentralAndPeripheralController.m */; };
+		5066859116B2F54100ADCB05 /* PBPasteboardPeripheralController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5066855516B2EDAA00ADCB05 /* PBPasteboardPeripheralController.h */; };
+		5066859816B2F7A600ADCB05 /* PBPasteboardPeripheralController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5066855616B2EDAA00ADCB05 /* PBPasteboardPeripheralController.m */; };
 		5066859916B2F7EE00ADCB05 /* PBPasteboardCentralController.h in Headers */ = {isa = PBXBuildFile; fileRef = 506684E316B2E48500ADCB05 /* PBPasteboardCentralController.h */; };
 		506FC1A016B3072B005CEC8B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506FC19F16B3072B005CEC8B /* CoreBluetooth.framework */; };
 		50E49F7D16BD805300A304E0 /* CBPeripheral+PasteboardConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E49F7C16BD805300A304E0 /* CBPeripheral+PasteboardConnectionController.m */; };
@@ -28,7 +29,7 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
-				5066859116B2F54100ADCB05 /* PBPasteboardCentralAndPeripheralController.h in CopyFiles */,
+				5066859116B2F54100ADCB05 /* PBPasteboardPeripheralController.h in CopyFiles */,
 				5066850916B2E8BE00ADCB05 /* PBPasteboardCentralController.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -36,6 +37,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5049DE3E16C7F82200793473 /* PBPasteboardUUIDs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPasteboardUUIDs.h; sourceTree = "<group>"; };
+		5049DE3F16C7F82200793473 /* PBPasteboardUUIDs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPasteboardUUIDs.m; sourceTree = "<group>"; };
 		506684D216B2E46E00ADCB05 /* libPasteboardConnectionControllerLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPasteboardConnectionControllerLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		506684D516B2E46E00ADCB05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		506684D916B2E46E00ADCB05 /* PasteboardConnectionController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PasteboardConnectionController-Prefix.pch"; sourceTree = "<group>"; };
@@ -45,8 +48,8 @@
 		5066853416B2EB3E00ADCB05 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		5066853516B2EB3E00ADCB05 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		5066853616B2EB3E00ADCB05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		5066855516B2EDAA00ADCB05 /* PBPasteboardCentralAndPeripheralController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPasteboardCentralAndPeripheralController.h; sourceTree = "<group>"; };
-		5066855616B2EDAA00ADCB05 /* PBPasteboardCentralAndPeripheralController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPasteboardCentralAndPeripheralController.m; sourceTree = "<group>"; };
+		5066855516B2EDAA00ADCB05 /* PBPasteboardPeripheralController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPasteboardPeripheralController.h; sourceTree = "<group>"; };
+		5066855616B2EDAA00ADCB05 /* PBPasteboardPeripheralController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPasteboardPeripheralController.m; sourceTree = "<group>"; };
 		5066856316B2F0D700ADCB05 /* PasteboardConnectionControllerFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PasteboardConnectionControllerFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5066857716B2F28400ADCB05 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
 		506FC19F16B3072B005CEC8B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
@@ -110,10 +113,12 @@
 			isa = PBXGroup;
 			children = (
 				50E49F7E16BD814600A304E0 /* Categories */,
+				5049DE3E16C7F82200793473 /* PBPasteboardUUIDs.h */,
+				5049DE3F16C7F82200793473 /* PBPasteboardUUIDs.m */,
 				506684E316B2E48500ADCB05 /* PBPasteboardCentralController.h */,
 				506684E416B2E48500ADCB05 /* PBPasteboardCentralController.m */,
-				5066855516B2EDAA00ADCB05 /* PBPasteboardCentralAndPeripheralController.h */,
-				5066855616B2EDAA00ADCB05 /* PBPasteboardCentralAndPeripheralController.m */,
+				5066855516B2EDAA00ADCB05 /* PBPasteboardPeripheralController.h */,
+				5066855616B2EDAA00ADCB05 /* PBPasteboardPeripheralController.m */,
 				506684D816B2E46E00ADCB05 /* Supporting Files */,
 			);
 			path = PasteboardConnectionController;
@@ -237,9 +242,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5066859816B2F7A600ADCB05 /* PBPasteboardCentralAndPeripheralController.m in Sources */,
+				5066859816B2F7A600ADCB05 /* PBPasteboardPeripheralController.m in Sources */,
 				5066850A16B2E8FE00ADCB05 /* PBPasteboardCentralController.m in Sources */,
 				50E49F7D16BD805300A304E0 /* CBPeripheral+PasteboardConnectionController.m in Sources */,
+				5049DE4016C7F82300793473 /* PBPasteboardUUIDs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

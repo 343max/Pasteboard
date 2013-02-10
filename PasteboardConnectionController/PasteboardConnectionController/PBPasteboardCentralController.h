@@ -31,11 +31,6 @@ extern NSString * const PBPasteboardCentralControllerEventNotification;
 
 - (void)sendText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
 
-- (void)postEventNotification:(NSString *)notificationText;
-
-@property (strong, readonly) CBUUID *pasteboardServiceUUID;
-@property (strong, readonly) CBUUID *writeTextCharacteristicUUID;
-
 @property (strong, readonly) NSString *name;
 
 @property (readonly, nonatomic) NSSet *connectedPeripherals;
