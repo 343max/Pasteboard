@@ -28,6 +28,7 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
 @interface PBPasteboardCentralController ()
 
 @property (strong, nonatomic) NSSet *connectedPeripherals;
+@property (strong) NSMutableSet *discoveredUnconnectedPeripherals;
 @property (strong, readonly) CBCentralManager *centralManager;
 
 @end
@@ -50,6 +51,7 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
         _writeTextCharacteristicUUID = [CBUUID UUIDWithString:@"9606d0b0-6c87-11e2-bcfd-0800200c9a66"];
         
         _connectedPeripherals = [[NSSet alloc] init];
+        _discoveredUnconnectedPeripherals = [[NSMutableSet alloc] init];
         
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     }
@@ -137,8 +139,10 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
 {
     PBLog(@"centralManager:didDiscoverPeripheral: %@\n                   advertisementData: %@\n                                RSSI: %@", peripheral.name, advertisementData, RSSI);
     
-    if (![self.connectedPeripherals containsObject:peripheral]) {
-        self.connectedPeripherals = [self.connectedPeripherals setByAddingObject:peripheral];
+    if (![self.connectedPeripherals containsObject:peripheral] &&
+        ![self.discoveredUnconnectedPeripherals containsObject:peripheral])
+    {
+        [self.discoveredUnconnectedPeripherals addObject:peripheral];
         [central connectPeripheral:peripheral options:nil];
     }
 }
@@ -147,15 +151,16 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
 {
     PBLog(@"didConnectPeripheral: %p %@", peripheral, peripheral.name);
     
+    [self.discoveredUnconnectedPeripherals removeObject:peripheral];
+    self.connectedPeripherals = [self.connectedPeripherals setByAddingObject:peripheral];
+
     peripheral.delegate = self;
     [peripheral discoverServices:@[ self.pasteboardServiceUUID ]];
 }
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error;
 {
-    NSMutableSet *connectedPeripherals = [self.connectedPeripherals mutableCopy];
-    [connectedPeripherals removeObject:peripheral];
-    self.connectedPeripherals = [connectedPeripherals copy];
+    [self.discoveredUnconnectedPeripherals removeObject:peripheral];
     
     PBLog(@"didFailToConnectPeripheral: %@ error: %@", peripheral.name, error);
 }
