@@ -47,6 +47,8 @@
     localNotifcation.alertBody = [NSString stringWithFormat:@"did receive text: \"%@\"", text];
     localNotifcation.fireDate = [NSDate date];
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotifcation];
+    
+    [UIPasteboard generalPasteboard].string = text;
 }
 
 @end
