@@ -28,7 +28,7 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
 
 @interface PBPasteboardCentralController ()
 
-@property (strong, nonatomic) NSSet *connectedPeripherals;
+@property (strong) NSSet *connectedPeripherals;
 @property (strong) NSMutableSet *discoveredUnconnectedPeripherals;
 @property (strong, readonly) CBCentralManager *centralManager;
 
@@ -71,6 +71,17 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
     return self;
 }
 
+- (CBPeripheral *)peripheralWithHostname:(NSString *)hostname;
+{
+    for (CBPeripheral *peripheral in self.connectedPeripherals) {
+        if ([peripheral.name caseInsensitiveCompare:hostname] == NSOrderedSame) {
+            return peripheral;
+        }
+    }
+    
+    return nil;
+}
+
 - (void)scanForPeripherals;
 {
     [self.centralManager scanForPeripheralsWithServices:@[ [PBPasteboardUUIDs serviceUUID] ] options:nil];
@@ -81,6 +92,13 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
     [self.centralManager retrievePeripherals:self.registeredPeripheralsUUIDs];
 }
 
+- (void)disconnectPeripherals;
+{
+    for (CBPeripheral *peripheral in self.connectedPeripherals) {
+        [self.centralManager cancelPeripheralConnection:peripheral];
+    }
+}
+
 - (void)updateRSSIOFAllDevices:(NSTimer *)timer;
 {
     for (CBPeripheral *peripheral in [self.connectedPeripherals allObjects]) {
@@ -88,7 +106,7 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
     }
 }
 
-- (void)sendText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
+- (void)pasteText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
 {
     NSData *value = [text dataUsingEncoding:NSUTF8StringEncoding];
     CBCharacteristic *characteristic = [peripheral characteristicWithUUID:[PBPasteboardUUIDs writeTextCharcteristicsUUID]
@@ -146,21 +164,6 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (void)setConnectedPeripherals:(NSSet *)connectedPeripherals;
-{
-    if ([connectedPeripherals isEqualToSet:_connectedPeripherals]) {
-        return;
-    }
-    
-    _connectedPeripherals = connectedPeripherals;
-    
-    NSMutableArray *connectedPeripheralsUUIDs = [[NSMutableArray alloc] initWithCapacity:connectedPeripherals.count];
-    for (CBPeripheral *peripheral in connectedPeripherals) {
-        [connectedPeripheralsUUIDs addObject:[CBUUID UUIDWithCFUUID:peripheral.UUID]];
-    }
-    
-    self.registeredPeripheralsUUIDs = connectedPeripheralsUUIDs;
-}
 
 #pragma mark CBCentralManagerDelegate
 
@@ -226,6 +229,11 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
     
     [self.discoveredUnconnectedPeripherals removeObject:peripheral];
     self.connectedPeripherals = [self.connectedPeripherals setByAddingObject:peripheral];
+    
+    CBUUID *peripheralUUID = [CBUUID UUIDWithCFUUID:peripheral.UUID];
+    if (![self.registeredPeripheralsUUIDs containsObject:peripheralUUID]) {
+        self.registeredPeripheralsUUIDs = [self.registeredPeripheralsUUIDs arrayByAddingObject:peripheralUUID];
+    }
 
     peripheral.delegate = self;
     [peripheral discoverServices:@[ [PBPasteboardUUIDs serviceUUID] ]];
@@ -248,6 +256,13 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
         [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardCentralControllerPeripheralWasDisconnectedNotification
                                                             object:self
                                                           userInfo:@{ PBPasteboardCentralControllerPeripheralKey: peripheral }];
+        
+        // for now we are just trying to reconnect to devices
+        double delayInSeconds = 2.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [central connectPeripheral:peripheral options:nil];
+        });
     }
     
     PBLog(@"didDisconnectPeripheral: %@ error: %@", peripheral.name, error);
@@ -291,7 +306,7 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
     for (CBCharacteristic *characteristic in service.characteristics) {
         PBLog(@"characteristic: %@", characteristic);
         
-        [self sendText:@"I can see you!" toPeripheral:peripheral];
+        [self pasteText:@"I can see you!" toPeripheral:peripheral];
     }
 }
 

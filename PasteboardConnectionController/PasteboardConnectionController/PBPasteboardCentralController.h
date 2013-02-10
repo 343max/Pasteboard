@@ -28,8 +28,11 @@ extern NSString * const PBPasteboardCentralControllerEventNotification;
 
 - (void)scanForPeripherals;
 - (void)reconnectPeripherals;
+- (void)disconnectPeripherals;
 
-- (void)sendText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
+- (void)pasteText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
+
+- (CBPeripheral *)peripheralWithHostname:(NSString *)hostname;
 
 @property (strong, readonly) NSString *name;
 

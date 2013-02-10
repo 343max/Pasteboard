@@ -10,7 +10,7 @@
 
 @interface PBAppDelegate : NSObject <NSApplicationDelegate>
 
-@property (strong, readonly) PBPasteboardCentralController *pasteboardController;
+@property (strong, readonly) PBPasteboardCentralController *centralController;
 @property (assign) IBOutlet NSWindow *window;
 
 @end

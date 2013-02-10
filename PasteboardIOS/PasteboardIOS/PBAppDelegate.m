@@ -22,8 +22,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    _centralController = [[PBPasteboardCentralController alloc] initWithName:[UIDevice currentDevice].name];
-    _peripheralController = [[PBPasteboardPeripheralController alloc] initWithName:[UIDevice currentDevice].name];
+    _centralController = [[PBPasteboardCentralController alloc] initWithName:[UIDevice currentDevice].model];
+    _peripheralController = [[PBPasteboardPeripheralController alloc] initWithName:[UIDevice currentDevice].model];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     PBDevicesViewController *devicesViewController = [[PBDevicesViewController alloc] initWithStyle:UITableViewStylePlain];

@@ -22,13 +22,24 @@
 
 - (void)peripheralCountChanged:(NSNotification *)notification;
 {
-    self.window.title = [NSString stringWithFormat:@"%lu peripherals", (unsigned long)self.pasteboardController.connectedPeripherals.count];
+    self.window.title = [NSString stringWithFormat:@"%lu peripherals", (unsigned long)self.centralController.connectedPeripherals.count];
 }
 
 - (void)handleGetURLEvent:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent;
 {
-    NSString *URLAsString = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
-    NSLog(@"URL: %@", URLAsString);
+    NSString *URLString = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
+    NSURL *URL = [NSURL URLWithString:URLString];
+    
+    NSLog(@"URL: %@, host: %@, path: %@, query: %@", URL, URL.host, URL.path, URL.query);
+    
+    CBPeripheral *peripheral = [self.centralController peripheralWithHostname:URL.host];
+    
+    if (peripheral != nil) {
+        if ([URL.path isEqualTo:@"/paste/text"]) {
+            [self.centralController pasteText:[URL.query stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                                   toPeripheral:peripheral];
+        }
+    }
 }
 
 
@@ -43,7 +54,7 @@
                             andEventID:kAEGetURL];
     
     NSString *computerName = (__bridge NSString *)SCDynamicStoreCopyComputerName(NULL, NULL);
-    _pasteboardController = [[PBPasteboardCentralController alloc] initWithName:computerName];
+    _centralController = [[PBPasteboardCentralController alloc] initWithName:computerName];
 
     [self peripheralCountChanged:nil];
     
@@ -55,6 +66,12 @@
                                              selector:@selector(peripheralCountChanged:)
                                                  name:PBPasteboardCentralControllerPeripheralWasDisconnectedNotification
                                                object:nil];
+}
+
+- (void)applicationWillTerminate:(NSNotification *)notification;
+{
+    NSLog(@"willTerminate");
+    [self.centralController disconnectPeripherals];
 }
 
 @end
