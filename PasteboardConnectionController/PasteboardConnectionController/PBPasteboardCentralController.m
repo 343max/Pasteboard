@@ -31,6 +31,8 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
 @property (strong) NSMutableSet *discoveredUnconnectedPeripherals;
 @property (strong, readonly) CBCentralManager *centralManager;
 
+@property (strong, nonatomic) NSArray *registeredPeripheralsUUIDs;
+
 @end
 
 
@@ -87,8 +89,40 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
 
 
 #pragma mark Accessors
+@synthesize registeredPeripheralsUUIDs = _registeredPeripheralsUUIDs;
 
+- (NSArray *)registeredPeripheralsUUIDs;
+{
+    if (_registeredPeripheralsUUIDs == nil) {
+        NSArray *uuids = [[NSUserDefaults standardUserDefaults] arrayForKey:@"RegisteredPeripherals"];
+        NSMutableArray *registeredPeripheralsUUIDs = [[NSMutableArray alloc] initWithCapacity:uuids.count];
+        
+        for (NSData *uuidData in uuids) {
+            [registeredPeripheralsUUIDs addObject:[CBUUID UUIDWithData:uuidData]];
+        }
+        
+        _registeredPeripheralsUUIDs = [registeredPeripheralsUUIDs copy];
+    }
+    
+    return _registeredPeripheralsUUIDs;
+}
 
+- (void)setRegisteredPeripheralsUUIDs:(NSArray *)registeredPeripheralsUUIDs;
+{
+    if ([registeredPeripheralsUUIDs isEqualToArray:_registeredPeripheralsUUIDs]) {
+        return;
+    }
+    
+    _registeredPeripheralsUUIDs = registeredPeripheralsUUIDs;
+    
+    NSMutableArray *uuidsData = [[NSMutableArray alloc] initWithCapacity:registeredPeripheralsUUIDs.count];
+    
+    for (CBUUID *uuid in registeredPeripheralsUUIDs) {
+        [uuidsData addObject:uuid.data];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:uuidsData forKey:@"RegisteredPeripherals"];
+}
 
 #pragma mark CBCentralManagerDelegate
 
