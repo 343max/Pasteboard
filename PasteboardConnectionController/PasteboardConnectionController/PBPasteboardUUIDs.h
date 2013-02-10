@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Max Winde. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 @class CBUUID;
 
-@interface PBPasteboardUUIDs : UIImageView
+@interface PBPasteboardUUIDs : NSObject
 
 + (CBUUID *)serviceUUID;
 + (CBUUID *)writeTextCharcteristicsUUID;

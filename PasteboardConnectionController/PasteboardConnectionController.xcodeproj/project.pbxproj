@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5049DE4016C7F82300793473 /* PBPasteboardUUIDs.m in Sources */ = {isa = PBXBuildFile; fileRef = 5049DE3F16C7F82200793473 /* PBPasteboardUUIDs.m */; };
+		5049DE4116C7FBCA00793473 /* PBPasteboardUUIDs.m in Sources */ = {isa = PBXBuildFile; fileRef = 5049DE3F16C7F82200793473 /* PBPasteboardUUIDs.m */; };
 		505151A016BDE41D00A1C914 /* CBPeripheral+PasteboardConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E49F7C16BD805300A304E0 /* CBPeripheral+PasteboardConnectionController.m */; };
 		506684D616B2E46E00ADCB05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 506684D516B2E46E00ADCB05 /* Foundation.framework */; };
 		5066850916B2E8BE00ADCB05 /* PBPasteboardCentralController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 506684E316B2E48500ADCB05 /* PBPasteboardCentralController.h */; };
@@ -255,6 +256,7 @@
 			files = (
 				5066857216B2F0E600ADCB05 /* PBPasteboardCentralController.m in Sources */,
 				505151A016BDE41D00A1C914 /* CBPeripheral+PasteboardConnectionController.m in Sources */,
+				5049DE4116C7FBCA00793473 /* PBPasteboardUUIDs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
