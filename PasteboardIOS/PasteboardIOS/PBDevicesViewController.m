@@ -80,8 +80,8 @@
     [self.alertView setHandler:^{
         PBPasteboardCentralController *centralController = appDelegate.centralController;
         NSLog(@"text: %@", [blockSelf.alertView textFieldAtIndex:0].text);
-        [centralController sendText:[blockSelf.alertView textFieldAtIndex:0].text
-                       toPeripheral:[centralController.connectedPeripherals anyObject]];
+        [centralController pasteText:[blockSelf.alertView textFieldAtIndex:0].text
+                        toPeripheral:[centralController.connectedPeripherals anyObject]];
     } forButtonAtIndex:1];
     [self.alertView show];
     

@@ -310,6 +310,11 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
     }
 }
 
+- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForDescriptor:(CBDescriptor *)descriptor error:(NSError *)error;
+{
+    PBLog(@"peripheral:didWriteValueForDescriptor:");
+}
+
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error;
 {
     PBLog(@"peripheral:didWriteValueForCharacteristic:");

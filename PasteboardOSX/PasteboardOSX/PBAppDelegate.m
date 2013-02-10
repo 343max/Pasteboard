@@ -35,9 +35,13 @@
     CBPeripheral *peripheral = [self.centralController peripheralWithHostname:URL.host];
     
     if (peripheral != nil) {
-        if ([URL.path isEqualTo:@"/paste/text"]) {
+        if ([URL.path isEqualToString:@"/paste/text"]) {
             [self.centralController pasteText:[URL.query stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
                                    toPeripheral:peripheral];
+        } else if([URL.path isEqualToString:@"/paste/clipboard"]) {
+//            NSLog(@"pasteboard types: %@, string: %@", [NSPasteboard generalPasteboard].types, [[NSPasteboard generalPasteboard] stringForType:NSStringPboardType]);
+            [self.centralController pasteText:[[NSPasteboard generalPasteboard] stringForType:NSStringPboardType]
+                                 toPeripheral:peripheral];
         }
     }
 }

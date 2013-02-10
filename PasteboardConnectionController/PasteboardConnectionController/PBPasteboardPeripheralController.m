@@ -129,6 +129,8 @@ didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic;
         [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardDidReceiveTextNotification
                                                             object:self
                                                           userInfo:userInfo];
+        
+        [peripheral respondToRequest:request withResult:CBATTErrorSuccess];
     }
 }
 
