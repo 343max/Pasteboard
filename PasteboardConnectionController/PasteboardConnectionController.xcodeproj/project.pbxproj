@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5008ED1C16C8207800AD5D70 /* PBPasteboardPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = 5008ED1B16C8207800AD5D70 /* PBPasteboardPayload.m */; };
+		5008ED1D16C827D200AD5D70 /* PBPasteboardPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = 5008ED1B16C8207800AD5D70 /* PBPasteboardPayload.m */; };
 		5049DE4016C7F82300793473 /* PBPasteboardUUIDs.m in Sources */ = {isa = PBXBuildFile; fileRef = 5049DE3F16C7F82200793473 /* PBPasteboardUUIDs.m */; };
 		5049DE4116C7FBCA00793473 /* PBPasteboardUUIDs.m in Sources */ = {isa = PBXBuildFile; fileRef = 5049DE3F16C7F82200793473 /* PBPasteboardUUIDs.m */; };
 		505151A016BDE41D00A1C914 /* CBPeripheral+PasteboardConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E49F7C16BD805300A304E0 /* CBPeripheral+PasteboardConnectionController.m */; };
@@ -38,6 +40,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5008ED1A16C8207800AD5D70 /* PBPasteboardPayload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPasteboardPayload.h; sourceTree = "<group>"; };
+		5008ED1B16C8207800AD5D70 /* PBPasteboardPayload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPasteboardPayload.m; sourceTree = "<group>"; };
 		5049DE3E16C7F82200793473 /* PBPasteboardUUIDs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPasteboardUUIDs.h; sourceTree = "<group>"; };
 		5049DE3F16C7F82200793473 /* PBPasteboardUUIDs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPasteboardUUIDs.m; sourceTree = "<group>"; };
 		506684D216B2E46E00ADCB05 /* libPasteboardConnectionControllerLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPasteboardConnectionControllerLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +125,8 @@
 				5066855516B2EDAA00ADCB05 /* PBPasteboardPeripheralController.h */,
 				5066855616B2EDAA00ADCB05 /* PBPasteboardPeripheralController.m */,
 				506684D816B2E46E00ADCB05 /* Supporting Files */,
+				5008ED1A16C8207800AD5D70 /* PBPasteboardPayload.h */,
+				5008ED1B16C8207800AD5D70 /* PBPasteboardPayload.m */,
 			);
 			path = PasteboardConnectionController;
 			sourceTree = "<group>";
@@ -247,6 +253,7 @@
 				5066850A16B2E8FE00ADCB05 /* PBPasteboardCentralController.m in Sources */,
 				50E49F7D16BD805300A304E0 /* CBPeripheral+PasteboardConnectionController.m in Sources */,
 				5049DE4016C7F82300793473 /* PBPasteboardUUIDs.m in Sources */,
+				5008ED1C16C8207800AD5D70 /* PBPasteboardPayload.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +264,7 @@
 				5066857216B2F0E600ADCB05 /* PBPasteboardCentralController.m in Sources */,
 				505151A016BDE41D00A1C914 /* CBPeripheral+PasteboardConnectionController.m in Sources */,
 				5049DE4116C7FBCA00793473 /* PBPasteboardUUIDs.m in Sources */,
+				5008ED1D16C827D200AD5D70 /* PBPasteboardPayload.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

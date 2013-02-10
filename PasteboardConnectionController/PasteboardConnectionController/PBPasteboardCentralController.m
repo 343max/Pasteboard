@@ -15,6 +15,7 @@
 #import "CBPeripheral+PasteboardConnectionController.h"
 
 #import "PBPasteboardUUIDs.h"
+#import "PBPasteboardPayload.h"
 #import "PBPasteboardCentralController.h"
 
 #define PBLog(format, ...) [self postEventNotification:[NSString stringWithFormat:format, ##__VA_ARGS__]]
@@ -106,15 +107,20 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
     }
 }
 
-- (void)pasteText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
+- (void)sendEncodedData:(NSData *)data toPeripheral:(CBPeripheral *)peripheral;
 {
-    NSData *value = [text dataUsingEncoding:NSUTF8StringEncoding];
     CBCharacteristic *characteristic = [peripheral characteristicWithUUID:[PBPasteboardUUIDs writeTextCharcteristicsUUID]
                                                               serviceUUID:[PBPasteboardUUIDs serviceUUID]];
     NSAssert(characteristic != nil, @"characteristic must not be nil");
-    [peripheral writeValue:value
+    [peripheral writeValue:data
          forCharacteristic:characteristic
-                      type:CBCharacteristicWriteWithResponse];
+                      type:CBCharacteristicWriteWithResponse];    
+}
+
+- (void)pasteText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
+{
+    [self sendEncodedData:[PBPasteboardPayload encodedDataWithString:text]
+             toPeripheral:peripheral];
 }
 
 - (void)postEventNotification:(NSString *)notificationText;

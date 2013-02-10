@@ -30,6 +30,7 @@ extern NSString * const PBPasteboardCentralControllerEventNotification;
 - (void)reconnectPeripherals;
 - (void)disconnectPeripherals;
 
+- (void)sendEncodedData:(NSData *)data toPeripheral:(CBPeripheral *)peripheral;
 - (void)pasteText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
 
 - (CBPeripheral *)peripheralWithHostname:(NSString *)hostname;
