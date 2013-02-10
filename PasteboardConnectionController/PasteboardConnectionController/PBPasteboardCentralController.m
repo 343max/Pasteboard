@@ -18,6 +18,7 @@
 
 #define PBLog(format, ...) [self postEventNotification:[NSString stringWithFormat:format, ##__VA_ARGS__]]
 
+NSString * const PBPasteboardCentralControllerStatusDidChangeNotification = @"PBPasteboardCentralControllerStatusDidChangeNotification";
 NSString * const PBPasteboardCentralControllerPeripheralWasConnectedNotification = @"PBPasteboardCentralControllerPeripheralWasConnectedNotification";
 NSString * const PBPasteboardCentralControllerPeripheralWasDisconnectedNotification = @"PBPasteboardCentralControllerPeripheralWasDisconnectedNotification";
 NSString * const PBPasteboardCentralControllerPeripheralKey = @"PBPasteboardCentralControllerPeripheralKey";
@@ -26,7 +27,7 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
 
 @interface PBPasteboardCentralController ()
 
-@property (strong, readonly) NSMutableSet *connectedPeripheralsMutable;
+@property (strong, nonatomic) NSSet *connectedPeripherals;
 @property (strong, readonly) CBCentralManager *centralManager;
 
 @end
@@ -48,7 +49,7 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
         _pasteboardServiceUUID = [CBUUID UUIDWithString:@"d6f23f70-66ff-11e2-bcfd-0800200c9a66"];
         _writeTextCharacteristicUUID = [CBUUID UUIDWithString:@"9606d0b0-6c87-11e2-bcfd-0800200c9a66"];
         
-        _connectedPeripheralsMutable = [[NSMutableSet alloc] init];
+        _connectedPeripherals = [[NSSet alloc] init];
         
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     }
@@ -56,10 +57,12 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
     return self;
 }
 
-- (NSSet *)connectedPeripherals;
+- (void)scanForPeripherals;
 {
-    return self.connectedPeripheralsMutable;
+    [self.centralManager scanForPeripheralsWithServices:@[ self.pasteboardServiceUUID ] options:nil];
 }
+
+
 
 - (void)sendText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
 {
@@ -80,10 +83,19 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
                                                       userInfo:@{ @"text" : notificationText }];
 }
 
+
+#pragma mark Accessors
+
+
+
 #pragma mark CBCentralManagerDelegate
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central;
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardCentralControllerStatusDidChangeNotification
+                                                        object:self
+                                                      userInfo:nil];
+    
     PBLog(@"centralManagerDidUpdateState: %i", central.state);
     
     switch (central.state) {
@@ -106,7 +118,7 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
         case CBCentralManagerStatePoweredOn:
         {
             PBLog(@"CBCentralManagerStatePoweredOn");
-            [central scanForPeripheralsWithServices:@[ self.pasteboardServiceUUID ] options:nil];
+            [self scanForPeripherals];
 
             break;
         }
@@ -125,8 +137,8 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
 {
     PBLog(@"centralManager:didDiscoverPeripheral: %@\n                   advertisementData: %@\n                                RSSI: %@", peripheral.name, advertisementData, RSSI);
     
-    if (![self.connectedPeripheralsMutable containsObject:peripheral]) {
-        [self.connectedPeripheralsMutable addObject:peripheral];
+    if (![self.connectedPeripherals containsObject:peripheral]) {
+        self.connectedPeripherals = [self.connectedPeripherals setByAddingObject:peripheral];
         [central connectPeripheral:peripheral options:nil];
     }
 }
@@ -141,15 +153,20 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error;
 {
-    [self.connectedPeripheralsMutable removeObject:peripheral];
+    NSMutableSet *connectedPeripherals = [self.connectedPeripherals mutableCopy];
+    [connectedPeripherals removeObject:peripheral];
+    self.connectedPeripherals = [connectedPeripherals copy];
     
     PBLog(@"didFailToConnectPeripheral: %@ error: %@", peripheral.name, error);
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error;
 {
-    if ([self.connectedPeripheralsMutable containsObject:peripheral]) {
-        [self.connectedPeripheralsMutable removeObject:peripheral];
+    if ([self.connectedPeripherals containsObject:peripheral]) {
+        NSMutableSet *connectedPeripherals = [self.connectedPeripherals mutableCopy];
+        [connectedPeripherals removeObject:peripheral];
+        self.connectedPeripherals = [connectedPeripherals copy];
+
         [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardCentralControllerPeripheralWasDisconnectedNotification
                                                             object:self
                                                           userInfo:@{ PBPasteboardCentralControllerPeripheralKey: peripheral }];

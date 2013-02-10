@@ -14,6 +14,7 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const PBPasteboardCentralControllerStatusDidChangeNotification;
 extern NSString * const PBPasteboardCentralControllerPeripheralWasConnectedNotification;
 extern NSString * const PBPasteboardCentralControllerPeripheralWasDisconnectedNotification;
 extern NSString * const PBPasteboardCentralControllerPeripheralKey;
@@ -23,7 +24,10 @@ extern NSString * const PBPasteboardCentralControllerEventNotification;
 
 @interface PBPasteboardCentralController : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
-- initWithName:(NSString *)name;
+- (id)initWithName:(NSString *)name;
+
+- (void)scanForPeripherals;
+- (void)reconnectPeripherals;
 
 - (void)sendText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
 
