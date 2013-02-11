@@ -9,13 +9,21 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(uint16_t, PBPasteboardPayloadType) {
-    PBPasteboardPayloadTypeString,
-    PBPasteboardPayloadTypeJSON
+    PBPasteboardPayloadTypeString
 };
 
-@interface PBPasteboardPayload : NSObject
+@interface PBPasteboardPayloadContainer : NSObject
 
 + (NSData *)encodedDataWithData:(NSData *)data ofType:(PBPasteboardPayloadType)type;
 + (NSData *)encodedDataWithString:(NSString *)string;
+
+- (id)initWithStartBlock:(NSData *)data;
+- (BOOL)appendData:(NSData *)data;
+- (NSString *)stringValue;
+
+@property (assign, readonly) NSUInteger payloadSize;
+@property (assign, readonly) PBPasteboardPayloadType payloadType;
+@property (readonly, nonatomic) NSData *data;
+@property (readonly, assign) BOOL isComplete;
 
 @end

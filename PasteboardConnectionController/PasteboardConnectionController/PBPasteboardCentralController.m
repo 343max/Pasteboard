@@ -15,7 +15,7 @@
 #import "CBPeripheral+PasteboardConnectionController.h"
 
 #import "PBPasteboardUUIDs.h"
-#import "PBPasteboardPayload.h"
+#import "PBPasteboardPayloadContainer.h"
 #import "PBPasteboardCentralController.h"
 
 #define PBLog(format, ...) [self postEventNotification:[NSString stringWithFormat:format, ##__VA_ARGS__]]
@@ -119,7 +119,7 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
 
 - (void)pasteText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
 {
-    [self sendEncodedData:[PBPasteboardPayload encodedDataWithString:text]
+    [self sendEncodedData:[PBPasteboardPayloadContainer encodedDataWithString:text]
              toPeripheral:peripheral];
 }
 

@@ -8,6 +8,7 @@
 
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "PBPasteboardUUIDs.h"
+#import "PBPasteboardPayloadContainer.h"
 #import "PBPasteboardPeripheralController.h"
 
 #define PBLog(format, ...) [self postEventNotification:[NSString stringWithFormat:format, ##__VA_ARGS__]]
@@ -20,6 +21,7 @@ NSString * const PBPasteboardValueKey = @"PBPasteboardValueKey";
 @interface PBPasteboardPeripheralController ()
 
 @property (strong) CBPeripheralManager *peripheralManager;
+@property (strong) PBPasteboardPayloadContainer *payloadContainer;
 
 - (void)postEventNotification:(NSString *)notificationText;
 
@@ -118,17 +120,29 @@ didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic;
 - (void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveWriteRequests:(NSArray *)requests;
 {
     for (CBATTRequest *request in requests) {
-        NSString *stringValue = [[NSString alloc] initWithData:request.value encoding:NSUTF8StringEncoding];
-        PBLog(@"peripheral:didReceiveWriteRequest: %@", stringValue);
+        if (self.payloadContainer == nil) {
+            self.payloadContainer = [[PBPasteboardPayloadContainer alloc] init];
+        }
         
-        NSDictionary *userInfo = @{
-            PBPasteboardPeripheralKey: peripheral,
-            PBPasteboardValueKey: stringValue
-        };
+        [self.payloadContainer appendData:request.value];
+        PBLog(@"peripheral:didReceiveWriteRequest: isComplete: %i", self.payloadContainer.isComplete);
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardDidReceiveTextNotification
-                                                            object:self
-                                                          userInfo:userInfo];
+        if (self.payloadContainer.isComplete) {
+            switch (self.payloadContainer.payloadType) {
+                case PBPasteboardPayloadTypeString:
+                {
+                    NSDictionary *userInfo = @{
+                                               PBPasteboardPeripheralKey: peripheral,
+                                               PBPasteboardValueKey: [self.payloadContainer stringValue]
+                                               };
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardDidReceiveTextNotification
+                                                                        object:self
+                                                                      userInfo:userInfo];
+                    break;
+                }
+            }
+        }
         
         [peripheral respondToRequest:request withResult:CBATTErrorSuccess];
     }
