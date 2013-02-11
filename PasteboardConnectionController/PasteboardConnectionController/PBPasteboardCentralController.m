@@ -62,11 +62,11 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
         
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         
-        _updateRSSITimer = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                                            target:self
-                                                          selector:@selector(updateRSSIOFAllDevices:)
-                                                          userInfo:nil
-                                                           repeats:YES];
+//        _updateRSSITimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+//                                                            target:self
+//                                                          selector:@selector(updateRSSIOFAllDevices:)
+//                                                          userInfo:nil
+//                                                           repeats:YES];
     }
     
     return self;
