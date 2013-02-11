@@ -14,9 +14,9 @@
 #define PBLog(format, ...) [self postEventNotification:[NSString stringWithFormat:format, ##__VA_ARGS__]]
 
 NSString * const PBPasteboardPeripheralControllerEventNotification = @"PBPasteboardPeripheralControllerEventNotification";
-NSString * const PBPasteboardTransmissionDidStartNotification = @"PBPasteboardTransmissionDidStartNotification";
-NSString * const PBPasteboardTransmissionDidProgressNotification = @"PBPasteboardTransmissionDidProgressNotification";
-NSString * const PBPasteboardTransmissionDidEndNotification = @"PBPasteboardTransmissionDidEndNotification";
+NSString * const PBPasteboardPeripheralControllerTransferDidStartNotification = @"PBPasteboardPeripheralControllerTransferDidStartNotification";
+NSString * const PBPasteboardPeripheralControllerTransferDidProgressNotification = @"PBPasteboardPeripheralControllerTransferDidProgressNotification";
+NSString * const PBPasteboardPeripheralControllerTransferDidEndNotification = @"PBPasteboardPeripheralControllerTransferDidEndNotification";
 NSString * const PBPasteboardDidReceiveTextNotification = @"PBPasteboardDidReceiveTextNotification";
 NSString * const PBPasteboardPeripheralKey = @"PBPasteboardPeripheralKey";
 NSString * const PBPasteboardValueKey = @"PBPasteboardValueKey";
@@ -125,7 +125,7 @@ didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic;
     for (CBATTRequest *request in requests) {
         if (self.payloadReceiver == nil) {
             self.payloadReceiver = [[PBPasteboardPayloadReceiver alloc] init];
-            [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardTransmissionDidStartNotification
+            [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardPeripheralControllerTransferDidStartNotification
                                                                 object:self];
         }
         
@@ -137,12 +137,12 @@ didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic;
            @"complete": @(self.payloadReceiver.data.length),
            @"total": @(self.payloadReceiver.payloadSize)
         };
-        [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardTransmissionDidProgressNotification
+        [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardPeripheralControllerTransferDidProgressNotification
                                                             object:self
                                                           userInfo:userInfo];
         
         if (self.payloadReceiver.isComplete) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardTransmissionDidEndNotification
+            [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardPeripheralControllerTransferDidEndNotification
                                                                 object:self];
             switch (self.payloadReceiver.payloadType) {
                 case PBPasteboardPayloadTypeString:

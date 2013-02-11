@@ -115,6 +115,7 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
     NSAssert(characteristic != nil, @"characteristic must not be nil");
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        
         NSData *nextChunk = [payloadSender nextChunk];
         
         while (nextChunk != nil) {

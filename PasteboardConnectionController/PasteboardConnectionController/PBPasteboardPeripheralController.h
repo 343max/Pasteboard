@@ -7,9 +7,9 @@
 //
 
 extern NSString * const PBPasteboardPeripheralControllerEventNotification;
-extern NSString * const PBPasteboardTransmissionDidStartNotification;
-extern NSString * const PBPasteboardTransmissionDidProgressNotification;
-extern NSString * const PBPasteboardTransmissionDidEndNotification;
+extern NSString * const PBPasteboardPeripheralControllerTransferDidStartNotification;
+extern NSString * const PBPasteboardPeripheralControllerTransferDidProgressNotification;
+extern NSString * const PBPasteboardPeripheralControllerTransferDidEndNotification;
 extern NSString * const PBPasteboardDidReceiveTextNotification;
 extern NSString * const PBPasteboardPeripheralKey;
 extern NSString * const PBPasteboardValueKey;

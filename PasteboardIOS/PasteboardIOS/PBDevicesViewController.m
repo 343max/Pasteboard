@@ -38,15 +38,15 @@
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(transferDidStart:)
-                                                     name:PBPasteboardTransmissionDidStartNotification
+                                                     name:PBPasteboardPeripheralControllerTransferDidStartNotification
                                                    object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(transferDidProgress:)
-                                                     name:PBPasteboardTransmissionDidProgressNotification
+                                                     name:PBPasteboardPeripheralControllerTransferDidProgressNotification
                                                    object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(transferDidEnd:)
-                                                     name:PBPasteboardTransmissionDidEndNotification
+                                                     name:PBPasteboardPeripheralControllerTransferDidEndNotification
                                                    object:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
