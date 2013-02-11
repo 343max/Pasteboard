@@ -21,8 +21,9 @@
 {
     uint32_t payloadLength = (uint32_t)payloadData.length;
     
-    NSMutableData *resultData = [[NSMutableData alloc] initWithCapacity:payloadData.length + sizeof(payloadLength) + sizeof(uint16_t)];
+    NSMutableData *resultData = [[NSMutableData alloc] initWithCapacity:payloadData.length + sizeof(payloadLength) + sizeof(uint16_t) + 2];
     
+    [resultData appendData:[@"mw" dataUsingEncoding:NSUTF8StringEncoding]];
     [resultData appendBytes:&payloadLength length:sizeof(payloadLength)];
     [resultData appendBytes:&type length:sizeof(uint16_t)];
     [resultData appendData:payloadData];
@@ -76,11 +77,18 @@
         [self.mutableData appendData:data];
         _isComplete = (self.mutableData.length >= self.payloadSize);
     } else {
-        NSUInteger blockOffset = sizeof(_payloadType) + sizeof(uint16_t);
+        NSData *handshake = [data subdataWithRange:NSMakeRange(0, 2)];
+        NSString *handshakeString = [[NSString alloc] initWithData:handshake encoding:NSUTF8StringEncoding];
+        if (![handshakeString isEqualToString:@"mw"]) {
+            NSLog(@"invalid hadshake - ignoring");
+            return NO;
+        }
+        
+        NSUInteger blockOffset = sizeof(_payloadType) + sizeof(uint16_t) + 2;
         NSAssert(data.length >= blockOffset, @"firstBlock is to small");
         NSUInteger blockSize = data.length - blockOffset;
-        [data getBytes:&_payloadSize length:sizeof(_payloadSize)];
-        [data getBytes:&_payloadType range:NSMakeRange(sizeof(_payloadType), sizeof(uint16_t))];
+        [data getBytes:&_payloadSize range:NSMakeRange(2, sizeof(_payloadSize))];
+        [data getBytes:&_payloadType range:NSMakeRange(sizeof(_payloadType) + 2, sizeof(uint16_t))];
         NSData *firstBlock = [data subdataWithRange:NSMakeRange(blockOffset, blockSize)];
         [self.mutableData appendData:firstBlock];
         _isComplete = (self.mutableData.length >= self.payloadSize);
