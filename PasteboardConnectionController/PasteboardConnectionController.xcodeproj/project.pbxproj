@@ -87,6 +87,7 @@
 		506684C716B2E46E00ADCB05 = {
 			isa = PBXGroup;
 			children = (
+				506684D816B2E46E00ADCB05 /* Supporting Files */,
 				506684D716B2E46E00ADCB05 /* PasteboardConnectionController */,
 				506684D416B2E46E00ADCB05 /* Frameworks */,
 				506684D316B2E46E00ADCB05 /* Products */,
@@ -124,7 +125,6 @@
 				506684E416B2E48500ADCB05 /* PBPasteboardCentralController.m */,
 				5066855516B2EDAA00ADCB05 /* PBPasteboardPeripheralController.h */,
 				5066855616B2EDAA00ADCB05 /* PBPasteboardPeripheralController.m */,
-				506684D816B2E46E00ADCB05 /* Supporting Files */,
 				5008ED1A16C8207800AD5D70 /* PBPasteboardPayloadContainer.h */,
 				5008ED1B16C8207800AD5D70 /* PBPasteboardPayloadContainer.m */,
 			);
@@ -137,6 +137,7 @@
 				506684D916B2E46E00ADCB05 /* PasteboardConnectionController-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = PasteboardConnectionController;
 			sourceTree = "<group>";
 		};
 		5066853316B2EB3E00ADCB05 /* Other Frameworks */ = {
