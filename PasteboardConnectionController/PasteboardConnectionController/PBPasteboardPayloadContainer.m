@@ -75,6 +75,7 @@
     
     if (self.mutableData.length != 0) {
         [self.mutableData appendData:data];
+        _percentComplete = MIN(1.0, self.mutableData.length / self.payloadSize);
         _isComplete = (self.mutableData.length >= self.payloadSize);
     } else {
         NSData *handshake = [data subdataWithRange:NSMakeRange(0, 2)];
@@ -91,6 +92,7 @@
         [data getBytes:&_payloadType range:NSMakeRange(sizeof(_payloadType) + 2, sizeof(uint16_t))];
         NSData *firstBlock = [data subdataWithRange:NSMakeRange(blockOffset, blockSize)];
         [self.mutableData appendData:firstBlock];
+        _percentComplete = MIN(1.0, self.mutableData.length / self.payloadSize);
         _isComplete = (self.mutableData.length >= self.payloadSize);
     }
     

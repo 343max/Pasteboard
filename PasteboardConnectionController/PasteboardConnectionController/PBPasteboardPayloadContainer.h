@@ -25,5 +25,6 @@ typedef NS_ENUM(uint16_t, PBPasteboardPayloadType) {
 @property (assign, readonly) PBPasteboardPayloadType payloadType;
 @property (readonly, nonatomic) NSData *data;
 @property (readonly, assign) BOOL isComplete;
+@property (readonly, assign) float percentComplete;
 
 @end

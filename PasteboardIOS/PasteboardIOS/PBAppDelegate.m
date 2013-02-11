@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Max Winde. All rights reserved.
 //
 
-#import <PasteboardConnectionControllerLibrary/PBPasteboardCentralController.h>
-#import <PasteboardConnectionControllerLibrary/PBPasteboardPeripheralController.h>
+#import "PBPasteboardCentralController.h"
+#import "PBPasteboardPeripheralController.h"
 #import "PBDevicesViewController.h"
 #import "PBAppDelegate.h"
 

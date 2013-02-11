@@ -125,7 +125,8 @@ didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic;
         }
         
         [self.payloadContainer appendData:request.value];
-        PBLog(@"peripheral:didReceiveWriteRequest: isComplete: %i", self.payloadContainer.isComplete);
+        PBLog(@"peripheral:didReceiveWriteRequest: isComplete: %i (%.0f%%)", self.payloadContainer.isComplete, self.payloadContainer.percentComplete * 100.0);
+        PBLog(@"received: %i", self.payloadContainer.data.length);
         
         if (self.payloadContainer.isComplete) {
             switch (self.payloadContainer.payloadType) {

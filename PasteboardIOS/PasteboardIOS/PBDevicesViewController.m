@@ -7,8 +7,8 @@
 //
 
 #import <BlocksKit/UIAlertView+BlocksKit.h>
-#import <PasteboardConnectionControllerLibrary/PBPasteboardCentralController.h>
-#import <PasteboardConnectionControllerLibrary/PBPasteboardPeripheralController.h>
+#import "PBPasteboardCentralController.h"
+#import "PBPasteboardPeripheralController.h"
 #import "PBAppDelegate.h"
 #import "PBDevicesViewController.h"
 
