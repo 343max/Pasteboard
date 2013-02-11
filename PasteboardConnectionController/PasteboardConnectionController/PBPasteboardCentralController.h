@@ -21,6 +21,11 @@ extern NSString * const PBPasteboardCentralControllerPeripheralKey;
 
 extern NSString * const PBPasteboardCentralControllerEventNotification;
 
+extern NSString * const PBPasteboardCentralControllerTransferDidStartNotification;
+extern NSString * const PBPasteboardCentralControllerTransferDidProgressNotification;
+extern NSString * const PBPasteboardCentralControllerTransferDidEndNotification;
+
+
 @class PBPasteboardPayloadSender;
 
 @interface PBPasteboardCentralController : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>

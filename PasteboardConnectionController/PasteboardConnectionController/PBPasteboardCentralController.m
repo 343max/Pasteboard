@@ -28,6 +28,10 @@ NSString * const PBPasteboardCentralControllerPeripheralKey = @"PBPasteboardCent
 
 NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboardCentralControllerEventNotification";
 
+NSString * const PBPasteboardCentralControllerTransferDidStartNotification = @"PBPasteboardCentralControllerTransferDidStartNotification";
+NSString * const PBPasteboardCentralControllerTransferDidProgressNotification = @"PBPasteboardCentralControllerTransferDidProgressNotification";
+NSString * const PBPasteboardCentralControllerTransferDidEndNotification = @"PBPasteboardCentralControllerTransferDidEndNotification";
+
 @interface PBPasteboardCentralController ()
 
 @property (strong) NSSet *connectedPeripherals;
@@ -115,6 +119,8 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
     NSAssert(characteristic != nil, @"characteristic must not be nil");
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardCentralControllerTransferDidStartNotification
+                                                            object:self];
         
         NSData *nextChunk = [payloadSender nextChunk];
         
@@ -122,8 +128,21 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
             [peripheral writeValue:nextChunk
                  forCharacteristic:characteristic
                               type:CBCharacteristicWriteWithResponse];
+            
+            NSDictionary *userInfo = @{
+               @"complete": @(payloadSender.offset),
+               @"total": @(payloadSender.data.length)
+            };
+            [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardCentralControllerTransferDidProgressNotification
+                                                                object:self
+                                                              userInfo:userInfo];
+
+            
             nextChunk = [payloadSender nextChunk];
         }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardCentralControllerTransferDidEndNotification
+                                                            object:nil];
     });
     
 }
