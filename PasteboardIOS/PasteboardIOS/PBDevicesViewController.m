@@ -22,6 +22,10 @@
 - (void)didReceiveEvent:(NSNotification *)notification;
 - (void)peripheralCountChanged:(NSNotification *)notification;
 
+- (void)transferDidStart:(NSNotification *)notifcation;
+- (void)transferDidProgress:(NSNotification *)notification;
+- (void)transferDidEnd:(NSNotification *)notification;
+
 @end
 
 @implementation PBDevicesViewController
@@ -31,6 +35,20 @@
     self = [super initWithStyle:style];
     if (self) {
         self.messages = [[NSMutableArray alloc] init];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(transferDidStart:)
+                                                     name:PBPasteboardTransmissionDidStartNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(transferDidProgress:)
+                                                     name:PBPasteboardTransmissionDidProgressNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(transferDidEnd:)
+                                                     name:PBPasteboardTransmissionDidEndNotification
+                                                   object:nil];
+        
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(didReceiveText:)
                                                      name:PBPasteboardDidReceiveTextNotification
@@ -65,6 +83,26 @@
 - (void)dealloc;
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)transferDidStart:(NSNotification *)notifcation;
+{
+    self.navigationItem.titleView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+}
+
+- (void)transferDidProgress:(NSNotification *)notification;
+{
+    UIProgressView *progressView = (UIProgressView *)self.navigationItem.titleView;
+    
+    NSInteger complete = [notification.userInfo[@"complete"] integerValue];
+    NSInteger total = [notification.userInfo[@"total"] integerValue];
+    
+    [progressView setProgress:(float)complete / total animated:YES];
+}
+
+- (void)transferDidEnd:(NSNotification *)notification;
+{
+    self.navigationItem.titleView = nil;
 }
 
 - (void)sendText:(id)sender;

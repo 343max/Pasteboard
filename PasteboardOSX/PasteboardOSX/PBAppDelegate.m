@@ -74,7 +74,6 @@
 
 - (void)applicationWillTerminate:(NSNotification *)notification;
 {
-    NSLog(@"willTerminate");
     [self.centralController disconnectPeripherals];
 }
 

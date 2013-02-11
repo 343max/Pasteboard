@@ -57,6 +57,12 @@
         [self.mutableData appendData:data];
         _isComplete = (self.mutableData.length >= self.payloadSize);
     } else {
+        NSUInteger blockOffset = sizeof(_payloadType) + sizeof(uint16_t) + 2;
+        if (data.length < blockOffset) {
+            NSLog(@"block is to short to be a initial block - ignoring");
+            return NO;
+        }
+
         NSData *handshake = [data subdataWithRange:NSMakeRange(0, 2)];
         NSString *handshakeString = [[NSString alloc] initWithData:handshake encoding:NSUTF8StringEncoding];
         if (![handshakeString isEqualToString:@"mw"]) {
@@ -64,8 +70,6 @@
             return NO;
         }
         
-        NSUInteger blockOffset = sizeof(_payloadType) + sizeof(uint16_t) + 2;
-        NSAssert(data.length >= blockOffset, @"firstBlock is to small");
         NSUInteger blockSize = data.length - blockOffset;
         [data getBytes:&_payloadSize range:NSMakeRange(2, sizeof(_payloadSize))];
         [data getBytes:&_payloadType range:NSMakeRange(sizeof(_payloadType) + 2, sizeof(uint16_t))];
