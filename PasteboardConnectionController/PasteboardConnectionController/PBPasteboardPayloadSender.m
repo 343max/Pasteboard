@@ -10,6 +10,17 @@
 
 @implementation PBPasteboardPayloadSender
 
++ (PBPasteboardPayloadSender *)payloadSenderWithData:(NSData *)payloadData ofType:(PBPasteboardPayloadType)type;
+{
+    return [[PBPasteboardPayloadSender alloc] initWithData:payloadData ofType:type];
+}
+
++ (PBPasteboardPayloadSender *)payloadSenderWithString:(NSString *)string;
+{
+    return [self payloadSenderWithData:[string dataUsingEncoding:NSUTF8StringEncoding]
+                                ofType:PBPasteboardPayloadTypeString];
+}
+
 - (id)initWithData:(NSData *)data ofType:(PBPasteboardPayloadType)type;
 {
     self = [super init];
@@ -30,15 +41,26 @@
     return self;
 }
 
-+ (PBPasteboardPayloadSender *)payloadSenderWithData:(NSData *)payloadData ofType:(PBPasteboardPayloadType)type;
+- (void)resetOffset;
 {
-    return [[PBPasteboardPayloadSender alloc] initWithData:payloadData ofType:type];
+    _offset = 0;
 }
 
-+ (PBPasteboardPayloadSender *)payloadSenderWithString:(NSString *)string;
+- (NSData *)nextChunk;
 {
-    return [self payloadSenderWithData:[string dataUsingEncoding:NSUTF8StringEncoding]
-                              ofType:PBPasteboardPayloadTypeString];
+    NSRange range = NSMakeRange(_offset, 18);
+    
+    if (NSMaxRange(range) > self.data.length) {
+        range.length = MAX(self.data.length - range.location, 0);
+    }
+    
+    if (range.length == 0) {
+        return nil;
+    }
+    
+    NSData *returnData = [self.data subdataWithRange:range];
+    _offset = NSMaxRange(range);
+    return returnData;
 }
 
 @end

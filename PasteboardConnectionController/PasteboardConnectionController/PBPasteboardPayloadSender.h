@@ -12,10 +12,14 @@
 @interface PBPasteboardPayloadSender : NSObject
 
 @property (strong, readonly) NSData *data;
-
-- (id)initWithData:(NSData *)data ofType:(PBPasteboardPayloadType)type;
+@property (assign, readonly) NSUInteger offset;
 
 + (PBPasteboardPayloadSender *)payloadSenderWithData:(NSData *)data ofType:(PBPasteboardPayloadType)type;
 + (PBPasteboardPayloadSender *)payloadSenderWithString:(NSString *)string;
+
+- (id)initWithData:(NSData *)data ofType:(PBPasteboardPayloadType)type;
+
+- (void)resetOffset;
+- (NSData *)nextChunk;
 
 @end

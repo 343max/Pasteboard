@@ -113,9 +113,18 @@ NSString * const PBPasteboardCentralControllerEventNotification = @"PBPasteboard
     CBCharacteristic *characteristic = [peripheral characteristicWithUUID:[PBPasteboardUUIDs writeTextCharcteristicsUUID]
                                                               serviceUUID:[PBPasteboardUUIDs serviceUUID]];
     NSAssert(characteristic != nil, @"characteristic must not be nil");
-    [peripheral writeValue:payloadSender.data
-         forCharacteristic:characteristic
-                      type:CBCharacteristicWriteWithResponse];    
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSData *nextChunk = [payloadSender nextChunk];
+        
+        while (nextChunk != nil) {
+            [peripheral writeValue:nextChunk
+                 forCharacteristic:characteristic
+                              type:CBCharacteristicWriteWithResponse];
+            nextChunk = [payloadSender nextChunk];
+        }
+    });
+    
 }
 
 - (void)pasteText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
