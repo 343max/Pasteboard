@@ -6,36 +6,16 @@
 //  Copyright (c) 2013 Max Winde. All rights reserved.
 //
 
-#import "PBPasteboardPayloadContainer.h"
+#import "PBPasteboardPayloadReceiver.h"
 
-@interface PBPasteboardPayloadContainer ()
+@interface PBPasteboardPayloadReceiver ()
 
 @property (strong) NSMutableData *mutableData;
 
 @end
 
 
-@implementation PBPasteboardPayloadContainer
-
-+ (NSData *)encodedDataWithData:(NSData *)payloadData ofType:(PBPasteboardPayloadType)type;
-{
-    uint32_t payloadLength = (uint32_t)payloadData.length;
-    
-    NSMutableData *resultData = [[NSMutableData alloc] initWithCapacity:payloadData.length + sizeof(payloadLength) + sizeof(uint16_t) + 2];
-    
-    [resultData appendData:[@"mw" dataUsingEncoding:NSUTF8StringEncoding]];
-    [resultData appendBytes:&payloadLength length:sizeof(payloadLength)];
-    [resultData appendBytes:&type length:sizeof(uint16_t)];
-    [resultData appendData:payloadData];
-    
-    return [resultData copy];
-}
-
-+ (NSData *)encodedDataWithString:(NSString *)string;
-{
-    return [self encodedDataWithData:[string dataUsingEncoding:NSUTF8StringEncoding]
-                              ofType:PBPasteboardPayloadTypeString];
-}
+@implementation PBPasteboardPayloadReceiver
 
 - (id)init;
 {

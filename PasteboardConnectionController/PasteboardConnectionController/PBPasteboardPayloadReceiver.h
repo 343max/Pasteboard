@@ -12,10 +12,7 @@ typedef NS_ENUM(uint16_t, PBPasteboardPayloadType) {
     PBPasteboardPayloadTypeString
 };
 
-@interface PBPasteboardPayloadContainer : NSObject
-
-+ (NSData *)encodedDataWithData:(NSData *)data ofType:(PBPasteboardPayloadType)type;
-+ (NSData *)encodedDataWithString:(NSString *)string;
+@interface PBPasteboardPayloadReceiver : NSObject
 
 - (id)initWithStartBlock:(NSData *)data;
 - (BOOL)appendData:(NSData *)data;

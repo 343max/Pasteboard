@@ -21,12 +21,13 @@
 		50A2A1A416C995F200B84736 /* PBPasteboardUUIDs.m in Resources */ = {isa = PBXBuildFile; fileRef = 50A2A19916C995F200B84736 /* PBPasteboardUUIDs.m */; };
 		50A2A1A516C995F200B84736 /* PBPasteboardCentralController.h in Resources */ = {isa = PBXBuildFile; fileRef = 50A2A19A16C995F200B84736 /* PBPasteboardCentralController.h */; };
 		50A2A1A616C995F200B84736 /* PBPasteboardCentralController.m in Resources */ = {isa = PBXBuildFile; fileRef = 50A2A19B16C995F200B84736 /* PBPasteboardCentralController.m */; };
-		50A2A1A916C995F200B84736 /* PBPasteboardPayloadContainer.h in Resources */ = {isa = PBXBuildFile; fileRef = 50A2A19E16C995F200B84736 /* PBPasteboardPayloadContainer.h */; };
-		50A2A1AA16C995F200B84736 /* PBPasteboardPayloadContainer.m in Resources */ = {isa = PBXBuildFile; fileRef = 50A2A19F16C995F200B84736 /* PBPasteboardPayloadContainer.m */; };
+		50A2A1A916C995F200B84736 /* PBPasteboardPayloadReceiver.h in Resources */ = {isa = PBXBuildFile; fileRef = 50A2A19E16C995F200B84736 /* PBPasteboardPayloadReceiver.h */; };
+		50A2A1AA16C995F200B84736 /* PBPasteboardPayloadReceiver.m in Resources */ = {isa = PBXBuildFile; fileRef = 50A2A19F16C995F200B84736 /* PBPasteboardPayloadReceiver.m */; };
 		50A2A1AB16C9964600B84736 /* CBPeripheral+PasteboardConnectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A2A19616C995F200B84736 /* CBPeripheral+PasteboardConnectionController.m */; };
 		50A2A1AC16C9964600B84736 /* PBPasteboardUUIDs.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A2A19916C995F200B84736 /* PBPasteboardUUIDs.m */; };
 		50A2A1AD16C9964600B84736 /* PBPasteboardCentralController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A2A19B16C995F200B84736 /* PBPasteboardCentralController.m */; };
-		50A2A1AF16C9964600B84736 /* PBPasteboardPayloadContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A2A19F16C995F200B84736 /* PBPasteboardPayloadContainer.m */; };
+		50A2A1AF16C9964600B84736 /* PBPasteboardPayloadReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A2A19F16C995F200B84736 /* PBPasteboardPayloadReceiver.m */; };
+		50F545EF16C99F8E006BA68A /* PBPasteboardPayloadSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F545EE16C99F8E006BA68A /* PBPasteboardPayloadSender.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,14 +46,16 @@
 		509C9ED316B2BF4000D6B62A /* PBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAppDelegate.m; sourceTree = "<group>"; };
 		509C9ED616B2BF4000D6B62A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		509C9EDD16B2BFAE00D6B62A /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
-		50A2A19516C995F200B84736 /* CBPeripheral+PasteboardConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = "CBPeripheral+PasteboardConnectionController.h"; sourceTree = "<group>"; };
+		50A2A19516C995F200B84736 /* CBPeripheral+PasteboardConnectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBPeripheral+PasteboardConnectionController.h"; sourceTree = "<group>"; };
 		50A2A19616C995F200B84736 /* CBPeripheral+PasteboardConnectionController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = "CBPeripheral+PasteboardConnectionController.m"; sourceTree = "<group>"; };
-		50A2A19816C995F200B84736 /* PBPasteboardUUIDs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = PBPasteboardUUIDs.h; sourceTree = "<group>"; };
+		50A2A19816C995F200B84736 /* PBPasteboardUUIDs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPasteboardUUIDs.h; sourceTree = "<group>"; };
 		50A2A19916C995F200B84736 /* PBPasteboardUUIDs.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = PBPasteboardUUIDs.m; sourceTree = "<group>"; };
-		50A2A19A16C995F200B84736 /* PBPasteboardCentralController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = PBPasteboardCentralController.h; sourceTree = "<group>"; };
+		50A2A19A16C995F200B84736 /* PBPasteboardCentralController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPasteboardCentralController.h; sourceTree = "<group>"; };
 		50A2A19B16C995F200B84736 /* PBPasteboardCentralController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = PBPasteboardCentralController.m; sourceTree = "<group>"; };
-		50A2A19E16C995F200B84736 /* PBPasteboardPayloadContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; path = PBPasteboardPayloadContainer.h; sourceTree = "<group>"; };
-		50A2A19F16C995F200B84736 /* PBPasteboardPayloadContainer.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = PBPasteboardPayloadContainer.m; sourceTree = "<group>"; };
+		50A2A19E16C995F200B84736 /* PBPasteboardPayloadReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPasteboardPayloadReceiver.h; sourceTree = "<group>"; };
+		50A2A19F16C995F200B84736 /* PBPasteboardPayloadReceiver.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = PBPasteboardPayloadReceiver.m; sourceTree = "<group>"; };
+		50F545ED16C99F8E006BA68A /* PBPasteboardPayloadSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPasteboardPayloadSender.h; sourceTree = "<group>"; };
+		50F545EE16C99F8E006BA68A /* PBPasteboardPayloadSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPasteboardPayloadSender.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,8 +151,10 @@
 				50A2A19916C995F200B84736 /* PBPasteboardUUIDs.m */,
 				50A2A19A16C995F200B84736 /* PBPasteboardCentralController.h */,
 				50A2A19B16C995F200B84736 /* PBPasteboardCentralController.m */,
-				50A2A19E16C995F200B84736 /* PBPasteboardPayloadContainer.h */,
-				50A2A19F16C995F200B84736 /* PBPasteboardPayloadContainer.m */,
+				50A2A19E16C995F200B84736 /* PBPasteboardPayloadReceiver.h */,
+				50A2A19F16C995F200B84736 /* PBPasteboardPayloadReceiver.m */,
+				50F545ED16C99F8E006BA68A /* PBPasteboardPayloadSender.h */,
+				50F545EE16C99F8E006BA68A /* PBPasteboardPayloadSender.m */,
 			);
 			name = PasteboardConnectionController;
 			path = ../PasteboardConnectionController/PasteboardConnectionController;
@@ -216,8 +221,8 @@
 				50A2A1A416C995F200B84736 /* PBPasteboardUUIDs.m in Resources */,
 				50A2A1A516C995F200B84736 /* PBPasteboardCentralController.h in Resources */,
 				50A2A1A616C995F200B84736 /* PBPasteboardCentralController.m in Resources */,
-				50A2A1A916C995F200B84736 /* PBPasteboardPayloadContainer.h in Resources */,
-				50A2A1AA16C995F200B84736 /* PBPasteboardPayloadContainer.m in Resources */,
+				50A2A1A916C995F200B84736 /* PBPasteboardPayloadReceiver.h in Resources */,
+				50A2A1AA16C995F200B84736 /* PBPasteboardPayloadReceiver.m in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,9 +236,10 @@
 				50A2A1AB16C9964600B84736 /* CBPeripheral+PasteboardConnectionController.m in Sources */,
 				50A2A1AC16C9964600B84736 /* PBPasteboardUUIDs.m in Sources */,
 				50A2A1AD16C9964600B84736 /* PBPasteboardCentralController.m in Sources */,
-				50A2A1AF16C9964600B84736 /* PBPasteboardPayloadContainer.m in Sources */,
+				50A2A1AF16C9964600B84736 /* PBPasteboardPayloadReceiver.m in Sources */,
 				509C9ECD16B2BF4000D6B62A /* main.m in Sources */,
 				509C9ED416B2BF4000D6B62A /* PBAppDelegate.m in Sources */,
+				50F545EF16C99F8E006BA68A /* PBPasteboardPayloadSender.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

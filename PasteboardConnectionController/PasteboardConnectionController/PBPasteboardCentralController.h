@@ -21,6 +21,7 @@ extern NSString * const PBPasteboardCentralControllerPeripheralKey;
 
 extern NSString * const PBPasteboardCentralControllerEventNotification;
 
+@class PBPasteboardPayloadSender;
 
 @interface PBPasteboardCentralController : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
@@ -30,7 +31,7 @@ extern NSString * const PBPasteboardCentralControllerEventNotification;
 - (void)reconnectPeripherals;
 - (void)disconnectPeripherals;
 
-- (void)sendEncodedData:(NSData *)data toPeripheral:(CBPeripheral *)peripheral;
+- (void)sendPayload:(PBPasteboardPayloadSender *)payloadSender toPeripheral:(CBPeripheral *)peripheral;
 - (void)pasteText:(NSString *)text toPeripheral:(CBPeripheral *)peripheral;
 
 - (CBPeripheral *)peripheralWithHostname:(NSString *)hostname;

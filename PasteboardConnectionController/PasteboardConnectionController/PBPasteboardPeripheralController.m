@@ -8,7 +8,7 @@
 
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "PBPasteboardUUIDs.h"
-#import "PBPasteboardPayloadContainer.h"
+#import "PBPasteboardPayloadReceiver.h"
 #import "PBPasteboardPeripheralController.h"
 
 #define PBLog(format, ...) [self postEventNotification:[NSString stringWithFormat:format, ##__VA_ARGS__]]
@@ -21,7 +21,7 @@ NSString * const PBPasteboardValueKey = @"PBPasteboardValueKey";
 @interface PBPasteboardPeripheralController ()
 
 @property (strong) CBPeripheralManager *peripheralManager;
-@property (strong) PBPasteboardPayloadContainer *payloadContainer;
+@property (strong) PBPasteboardPayloadReceiver *payloadReceiver;
 
 - (void)postEventNotification:(NSString *)notificationText;
 
@@ -120,21 +120,21 @@ didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic;
 - (void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveWriteRequests:(NSArray *)requests;
 {
     for (CBATTRequest *request in requests) {
-        if (self.payloadContainer == nil) {
-            self.payloadContainer = [[PBPasteboardPayloadContainer alloc] init];
+        if (self.payloadReceiver == nil) {
+            self.payloadReceiver = [[PBPasteboardPayloadReceiver alloc] init];
         }
         
-        [self.payloadContainer appendData:request.value];
-        PBLog(@"peripheral:didReceiveWriteRequest: isComplete: %i (%.0f%%)", self.payloadContainer.isComplete, self.payloadContainer.percentComplete * 100.0);
-        PBLog(@"received: %i", self.payloadContainer.data.length);
+        [self.payloadReceiver appendData:request.value];
+        PBLog(@"peripheral:didReceiveWriteRequest: isComplete: %i (%.0f%%)", self.payloadReceiver.isComplete, self.payloadReceiver.percentComplete * 100.0);
+        PBLog(@"received: %i", self.payloadReceiver.data.length);
         
-        if (self.payloadContainer.isComplete) {
-            switch (self.payloadContainer.payloadType) {
+        if (self.payloadReceiver.isComplete) {
+            switch (self.payloadReceiver.payloadType) {
                 case PBPasteboardPayloadTypeString:
                 {
                     NSDictionary *userInfo = @{
                                                PBPasteboardPeripheralKey: peripheral,
-                                               PBPasteboardValueKey: [self.payloadContainer stringValue]
+                                               PBPasteboardValueKey: [self.payloadReceiver stringValue]
                                                };
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:PBPasteboardDidReceiveTextNotification
@@ -144,7 +144,7 @@ didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic;
                 }
             }
             
-            self.payloadContainer = nil;
+            self.payloadReceiver = nil;
         }
         
         [peripheral respondToRequest:request withResult:CBATTErrorSuccess];
