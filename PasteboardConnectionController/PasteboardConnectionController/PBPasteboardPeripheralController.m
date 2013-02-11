@@ -142,6 +142,8 @@ didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic;
                     break;
                 }
             }
+            
+            self.payloadContainer = nil;
         }
         
         [peripheral respondToRequest:request withResult:CBATTErrorSuccess];
